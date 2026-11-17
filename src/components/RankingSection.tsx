@@ -802,8 +802,8 @@ export function RankingSection({
 
       {/* Modal de Edição / Atualização de Pontos */}
       {adjustingPlayer && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="medieval-card rounded-2xl max-w-md w-full p-6 relative border-2 border-[#D6A33A]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto">
+          <div className="medieval-card rounded-2xl max-w-md w-full max-h-[92vh] overflow-y-auto p-5 sm:p-6 relative border-2 border-[#D6A33A] my-4">
             <button
               onClick={() => setAdjustingPlayer(null)}
               className="absolute top-4 right-4 text-stone-400 hover:text-white"

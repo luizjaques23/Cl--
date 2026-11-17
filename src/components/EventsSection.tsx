@@ -254,7 +254,7 @@ export function EventsSection({
               Dias marcados com chama possuem operações agendadas
             </span>
           </div>
-          <div className="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-10 gap-2">
+          <div className="grid grid-cols-3 sm:grid-cols-7 lg:grid-cols-10 gap-1.5 sm:gap-2">
             {calendarDays.map((item) => {
               const hasEvent = item.events.length > 0;
               const hasSoD = item.events.some((ev) =>
@@ -497,8 +497,8 @@ export function EventsSection({
 
       {/* Modal de Confirmação de Presença */}
       {confirmingEvent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="medieval-card rounded-2xl max-w-md w-full p-6 relative border-2 border-[#D6A33A]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto">
+          <div className="medieval-card rounded-2xl max-w-md w-full max-h-[92vh] overflow-y-auto p-5 sm:p-6 relative border-2 border-[#D6A33A] my-4">
             <button
               onClick={() => setConfirmingEvent(null)}
               className="absolute top-4 right-4 text-stone-400 hover:text-white"

@@ -481,8 +481,8 @@ export function MembersSection({
 
       {/* Modal de Consulta Detalhada do Guerreiro */}
       {selectedPlayer && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="medieval-card rounded-2xl max-w-lg w-full p-6 relative border-2 border-[#D6A33A]/60">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto">
+          <div className="medieval-card rounded-2xl max-w-lg w-full max-h-[92vh] overflow-y-auto p-5 sm:p-6 relative border-2 border-[#D6A33A]/60 my-4">
             <button
               onClick={() => setSelectedPlayer(null)}
               className="absolute top-4 right-4 text-stone-400 hover:text-white"

@@ -43,6 +43,9 @@ import { NoticesSection } from "@/components/NoticesSection";
 import { EventsSection } from "@/components/EventsSection";
 import { RankingSection } from "@/components/RankingSection";
 import { RoleBadge } from "@/components/RoleBadge";
+import { MedievalSplashScreen } from "@/components/MedievalSplashScreen";
+import { MedievalAudioControl } from "@/components/MedievalAudioControl";
+import { medievalAudio } from "@/lib/medieval-audio";
 
 interface PendingConfirmationAction {
   action: string;
@@ -81,6 +84,7 @@ export default function AlcatrazzOfficialPortal() {
     }[]
   >([]);
 
+  const [showSplash, setShowSplash] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toast, setToast] = useState<{
     type: "success" | "error";
@@ -97,6 +101,9 @@ export default function AlcatrazzOfficialPortal() {
 
   const notify = useCallback((type: "success" | "error", message: string) => {
     setToast({ type, message });
+    if (type === "success") {
+      medievalAudio.playSuccessFanfare();
+    }
   }, []);
 
   useEffect(() => {
@@ -288,13 +295,23 @@ export default function AlcatrazzOfficialPortal() {
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#090909] text-stone-100 relative">
+    <div className="min-h-screen flex flex-col bg-[#090909] text-stone-100 relative overflow-x-clip">
+      {/* =====================================================================
+          SPLASH SCREEN ANIMADA MEDIEVAL (INICIALIZAÇÃO)
+      ===================================================================== */}
+      {showSplash && (
+        <MedievalSplashScreen onFinish={() => setShowSplash(false)} />
+      )}
+
+      {/* BOTÃO FLUTUANTE DE SOM MEDIEVAL / SILENCIAR */}
+      <MedievalAudioControl variant="floating" />
+
       {/* =====================================================================
           MODAL GLOBAL DE SENHA DE CONFIRMAÇÃO DO LÍDER (232356)
       ===================================================================== */}
       {pendingAction && (
-        <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/85 backdrop-blur-md p-4">
-          <div className="medieval-card rounded-2xl max-w-md w-full p-6 sm:p-7 relative border-2 border-[#D6A33A] shadow-gold-glow-strong">
+        <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/85 backdrop-blur-md p-4 overflow-y-auto">
+          <div className="medieval-card rounded-2xl max-w-md w-full max-h-[92vh] overflow-y-auto p-5 sm:p-7 relative border-2 border-[#D6A33A] shadow-gold-glow-strong my-4">
             <button
               onClick={handleCancelConfirmation}
               className="absolute top-4 right-4 text-stone-400 hover:text-white"
@@ -372,9 +389,9 @@ export default function AlcatrazzOfficialPortal() {
 
       {/* NOTIFICAÇÃO TOAST GLOBAL */}
       {toast && (
-        <div className="fixed bottom-6 right-6 z-[100] max-w-md animate-bounce">
+        <div className="fixed bottom-16 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 z-[100] sm:max-w-md transition-all duration-300">
           <div
-            className={`px-5 py-3.5 rounded-xl border-2 shadow-2xl flex items-center gap-3 ${
+            className={`px-4 sm:px-5 py-3.5 rounded-xl border-2 shadow-2xl flex items-center gap-3 ${
               toast.type === "success"
                 ? "bg-[#111010] border-[#D6A33A] text-stone-100 shadow-gold-glow"
                 : "bg-[#24070a] border-rose-500 text-rose-100 shadow-red-glow"
@@ -399,23 +416,23 @@ export default function AlcatrazzOfficialPortal() {
       )}
 
       {/* BARRA DE NAVEGAÇÃO MEDIEVAL FIXA */}
-      <header className="sticky top-0 z-40 bg-[#090909]/90 backdrop-blur-md border-b border-[#D6A33A]/30 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <header className="sticky top-0 z-40 bg-[#090909]/92 backdrop-blur-md border-b border-[#D6A33A]/35 shadow-lg">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
           {/* Logo + Identificação */}
           <a
             href="#inicio"
-            className="flex items-center gap-3 group focus:outline-none"
+            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none min-w-0"
           >
             <img
               src="/assets/alcatrazz-crest.jpg"
               alt="Brasão Oficial ALCATRAZZ"
-              className="w-12 h-12 rounded-xl object-cover border-2 border-[#D6A33A] shadow-gold-glow group-hover:scale-105 transition"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover border-2 border-[#D6A33A] shadow-gold-glow group-hover:scale-105 transition shrink-0"
             />
-            <div>
-              <div className="font-medieval text-xl sm:text-2xl font-black tracking-widest gold-text-gradient leading-none">
+            <div className="min-w-0">
+              <div className="font-medieval text-lg sm:text-2xl font-black tracking-widest gold-text-gradient leading-none truncate">
                 ALCATRAZZ
               </div>
-              <div className="text-[10px] uppercase tracking-[0.22em] text-[#D66A19] font-semibold mt-1">
+              <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#D66A19] font-semibold mt-0.5 sm:mt-1 truncate">
                 Priston Tale • Portal Oficial
               </div>
             </div>
@@ -442,48 +459,52 @@ export default function AlcatrazzOfficialPortal() {
             ))}
           </nav>
 
-          {/* Ações Rápidas à Direita */}
-          <div className="hidden sm:flex items-center gap-2.5">
-            {pwaInstallPrompt && (
+          {/* Ações Rápidas à Direita + Som + Menu Mobile */}
+          <div className="flex items-center gap-2 shrink-0">
+            <MedievalAudioControl variant="header" />
+
+            <div className="hidden sm:flex items-center gap-2">
+              {pwaInstallPrompt && (
+                <button
+                  onClick={() => {
+                    pwaInstallPrompt.prompt();
+                    setPwaInstallPrompt(null);
+                  }}
+                  className="px-3 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 border border-[#D6A33A]/40 text-[#D6A33A] text-xs font-medieval uppercase flex items-center gap-1.5 min-h-[40px]"
+                >
+                  <Download className="w-3.5 h-3.5" /> Instalar App
+                </button>
+              )}
+
               <button
-                onClick={() => {
-                  pwaInstallPrompt.prompt();
-                  setPwaInstallPrompt(null);
-                }}
-                className="px-3 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 border border-[#D6A33A]/40 text-[#D6A33A] text-xs font-medieval uppercase flex items-center gap-1.5"
+                onClick={() => scrollToSection("membros")}
+                className="btn-blood-crimson px-3.5 py-2 rounded-lg text-xs font-medieval uppercase tracking-wider flex items-center gap-1.5 min-h-[40px]"
               >
-                <Download className="w-3.5 h-3.5" /> Instalar App
+                <UserPlus className="w-3.5 h-3.5 text-[#D6A33A]" /> + Cadastrar
+                Membro
               </button>
-            )}
 
-            <button
-              onClick={() => scrollToSection("membros")}
-              className="btn-blood-crimson px-3.5 py-2 rounded-lg text-xs font-medieval uppercase tracking-wider flex items-center gap-1.5"
-            >
-              <UserPlus className="w-3.5 h-3.5 text-[#D6A33A]" /> + Cadastrar
-              Membro
-            </button>
+              <button
+                onClick={() => scrollToSection("ranking")}
+                className="btn-royal-gold px-4 py-2 rounded-lg text-xs font-medieval uppercase tracking-wider flex items-center gap-1.5 min-h-[40px]"
+              >
+                <Trophy className="w-3.5 h-3.5" /> Ranking & Pontos
+              </button>
+            </div>
 
+            {/* Botão Mobile */}
             <button
-              onClick={() => scrollToSection("ranking")}
-              className="btn-royal-gold px-4 py-2 rounded-lg text-xs font-medieval uppercase tracking-wider flex items-center gap-1.5"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="xl:hidden p-2.5 rounded-lg bg-stone-900 border border-[#D6A33A]/40 text-[#D6A33A] min-h-[40px] min-w-[40px] flex items-center justify-center"
+              aria-label="Abrir Menu"
             >
-              <Trophy className="w-3.5 h-3.5" /> Ranking & Pontos
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
+              ) : (
+                <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+              )}
             </button>
           </div>
-
-          {/* Botão Mobile */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2.5 rounded-lg bg-stone-900 border border-[#D6A33A]/40 text-[#D6A33A]"
-            aria-label="Abrir Menu"
-          >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
         </div>
 
         {/* Drawer Mobile */}
