@@ -159,7 +159,7 @@ export default function AlcatrazzOfficialPortal() {
     }, 6000);
 
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").catch(() => {});
+      navigator.serviceWorker.register("/sw.js").catch(() => { });
     }
 
     const handleBeforeInstallPrompt = (e: Event) => {
@@ -391,11 +391,10 @@ export default function AlcatrazzOfficialPortal() {
       {toast && (
         <div className="fixed bottom-16 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 z-[100] sm:max-w-md transition-all duration-300">
           <div
-            className={`px-4 sm:px-5 py-3.5 rounded-xl border-2 shadow-2xl flex items-center gap-3 ${
-              toast.type === "success"
+            className={`px-4 sm:px-5 py-3.5 rounded-xl border-2 shadow-2xl flex items-center gap-3 ${toast.type === "success"
                 ? "bg-[#111010] border-[#D6A33A] text-stone-100 shadow-gold-glow"
                 : "bg-[#24070a] border-rose-500 text-rose-100 shadow-red-glow"
-            }`}
+              }`}
           >
             {toast.type === "success" ? (
               <CheckCircle2 className="w-5 h-5 text-[#D6A33A] shrink-0" />
