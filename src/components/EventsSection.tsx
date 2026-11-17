@@ -190,31 +190,28 @@ export function EventsSection({
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setViewMode("mensal")}
-            className={`px-4 py-2 rounded-lg text-xs font-medieval uppercase flex items-center gap-1.5 border transition ${
-              viewMode === "mensal"
+            className={`px-4 py-2 rounded-lg text-xs font-medieval uppercase flex items-center gap-1.5 border transition ${viewMode === "mensal"
                 ? "bg-[#D6A33A] text-black font-bold border-[#D6A33A]"
                 : "bg-black/60 text-stone-300 border-stone-800 hover:border-[#D6A33A]/50"
-            }`}
+              }`}
           >
             <LayoutGrid className="w-3.5 h-3.5" /> Visão Mensal
           </button>
           <button
             onClick={() => setViewMode("semanal")}
-            className={`px-4 py-2 rounded-lg text-xs font-medieval uppercase flex items-center gap-1.5 border transition ${
-              viewMode === "semanal"
+            className={`px-4 py-2 rounded-lg text-xs font-medieval uppercase flex items-center gap-1.5 border transition ${viewMode === "semanal"
                 ? "bg-[#D6A33A] text-black font-bold border-[#D6A33A]"
                 : "bg-black/60 text-stone-300 border-stone-800 hover:border-[#D6A33A]/50"
-            }`}
+              }`}
           >
             <ListFilter className="w-3.5 h-3.5" /> Próximos / Semanal
           </button>
           <button
             onClick={() => setViewMode("anteriores")}
-            className={`px-4 py-2 rounded-lg text-xs font-medieval uppercase flex items-center gap-1.5 border transition ${
-              viewMode === "anteriores"
+            className={`px-4 py-2 rounded-lg text-xs font-medieval uppercase flex items-center gap-1.5 border transition ${viewMode === "anteriores"
                 ? "bg-[#D6A33A] text-black font-bold border-[#D6A33A]"
                 : "bg-black/60 text-stone-300 border-stone-800 hover:border-[#D6A33A]/50"
-            }`}
+              }`}
           >
             <History className="w-3.5 h-3.5" /> Eventos Anteriores
           </button>
@@ -228,13 +225,12 @@ export function EventsSection({
               <button
                 key={cat}
                 onClick={() => setCategoryFilter(cat)}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium border transition ${
-                  active
+                className={`px-3 py-1.5 rounded-md text-xs font-medium border transition ${active
                     ? "bg-[#790D16] text-[#D6A33A] border-[#D6A33A]"
                     : isSoD
-                    ? "bg-[#D66A19]/15 text-[#D66A19] border-[#D66A19]/40 hover:bg-[#D66A19]/25"
-                    : "bg-stone-900/80 text-stone-400 border-stone-800 hover:text-stone-200"
-                }`}
+                      ? "bg-[#D66A19]/15 text-[#D66A19] border-[#D66A19]/40 hover:bg-[#D66A19]/25"
+                      : "bg-stone-900/80 text-stone-400 border-stone-800 hover:text-stone-200"
+                  }`}
               >
                 {isSoD ? "🔥 SoD (Bellatra)" : cat}
               </button>
@@ -263,13 +259,12 @@ export function EventsSection({
               return (
                 <div
                   key={item.dateStr}
-                  className={`p-2.5 rounded-lg border text-left transition min-h-[74px] flex flex-col justify-between ${
-                    hasSoD
+                  className={`p-2.5 rounded-lg border text-left transition min-h-[74px] flex flex-col justify-between ${hasSoD
                       ? "bg-gradient-to-br from-[#790D16]/60 to-[#D66A19]/30 border-[#D6A33A] shadow-gold-glow"
                       : hasEvent
-                      ? "bg-[#790D16]/30 border-[#D6A33A]/60"
-                      : "bg-black/40 border-stone-800/70 opacity-75"
-                  }`}
+                        ? "bg-[#790D16]/30 border-[#D6A33A]/60"
+                        : "bg-black/40 border-stone-800/70 opacity-75"
+                    }`}
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-medieval text-xs font-bold text-stone-300">
@@ -342,23 +337,21 @@ export function EventsSection({
             return (
               <div
                 key={evt.id}
-                className={`medieval-card rounded-xl p-6 flex flex-col justify-between ${
-                  isSoD
+                className={`medieval-card rounded-xl p-6 flex flex-col justify-between ${isSoD
                     ? "border-2 border-[#D66A19] shadow-gold-glow"
                     : evt.destaque
-                    ? "border-2 border-[#D6A33A]/80"
-                    : ""
-                }`}
+                      ? "border-2 border-[#D6A33A]/80"
+                      : ""
+                  }`}
               >
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                     <div className="flex flex-wrap items-center gap-2">
                       <span
-                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medieval font-bold uppercase ${
-                          isSoD
+                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medieval font-bold uppercase ${isSoD
                             ? "bg-gradient-to-r from-[#790D16] to-[#D66A19] text-white border border-[#D6A33A]"
                             : "bg-[#790D16]/40 text-[#D6A33A] border border-[#D6A33A]/40"
-                        }`}
+                          }`}
                       >
                         {isSoD ? (
                           <Flame className="w-3.5 h-3.5" />

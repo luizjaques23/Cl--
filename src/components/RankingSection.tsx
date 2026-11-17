@@ -212,8 +212,8 @@ export function RankingSection({
               key={item.id}
               onClick={() => setCriterion(item.id as RankingCriterion)}
               className={`px-3.5 py-2 rounded-lg text-xs font-medieval uppercase tracking-wider border transition ${criterion === item.id
-                  ? "bg-gradient-to-r from-[#9e7019] via-[#D6A33A] to-[#b88422] text-black font-bold border-[#f5d77f] shadow-gold-glow"
-                  : "bg-black/60 text-stone-300 border-stone-800 hover:border-[#D6A33A]/50"
+                ? "bg-gradient-to-r from-[#9e7019] via-[#D6A33A] to-[#b88422] text-black font-bold border-[#f5d77f] shadow-gold-glow"
+                : "bg-black/60 text-stone-300 border-stone-800 hover:border-[#D6A33A]/50"
                 }`}
             >
               {item.label}
@@ -582,8 +582,8 @@ export function RankingSection({
                   </strong>
                   <span
                     className={`font-bold ${pt.pontos_alterados >= 0
-                        ? "text-emerald-400"
-                        : "text-rose-400"
+                      ? "text-emerald-400"
+                      : "text-rose-400"
                       }`}
                   >
                     {pt.pontos_alterados >= 0 ? "+" : ""}
@@ -828,8 +828,8 @@ export function RankingSection({
                   type="button"
                   onClick={() => setModePts("somar")}
                   className={`py-1.5 rounded font-medieval uppercase transition ${modePts === "somar"
-                      ? "bg-[#D6A33A] text-black font-bold"
-                      : "text-stone-400"
+                    ? "bg-[#D6A33A] text-black font-bold"
+                    : "text-stone-400"
                     }`}
                 >
                   Somar / Subtrair
@@ -838,8 +838,8 @@ export function RankingSection({
                   type="button"
                   onClick={() => setModePts("definir")}
                   className={`py-1.5 rounded font-medieval uppercase transition ${modePts === "definir"
-                      ? "bg-[#D6A33A] text-black font-bold"
-                      : "text-stone-400"
+                    ? "bg-[#D6A33A] text-black font-bold"
+                    : "text-stone-400"
                     }`}
                 >
                   Definir Total Exato
