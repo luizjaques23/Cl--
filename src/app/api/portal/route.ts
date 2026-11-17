@@ -116,6 +116,38 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    // Reidratação automática caso o servidor serverless tenha reiniciado em frio (cold start)
+    if (action === "hydrate_state") {
+      const incoming = payload || {};
+      const serverIsEmpty =
+        db.jogadores.length === 0 &&
+        db.avisos.length === 0 &&
+        db.eventos.length === 0;
+      const incomingTime = Date.parse(incoming.last_updated || "1970-01-01");
+      const serverTime = Date.parse(db.last_updated || "1970-01-01");
+
+      if (serverIsEmpty && incomingTime > serverTime) {
+        if (Array.isArray(incoming.cargos) && incoming.cargos.length > 0) {
+          db.cargos = incoming.cargos;
+        }
+        if (Array.isArray(incoming.jogadores)) db.jogadores = incoming.jogadores;
+        if (Array.isArray(incoming.avisos)) db.avisos = incoming.avisos;
+        if (Array.isArray(incoming.eventos)) db.eventos = incoming.eventos;
+        if (Array.isArray(incoming.participacoes)) {
+          db.participacoes = incoming.participacoes;
+        }
+        if (Array.isArray(incoming.pontuacoes)) {
+          db.pontuacoes = incoming.pontuacoes;
+        }
+        const state = writeServerDb(db);
+        return NextResponse.json({ ok: true, state });
+      }
+      return NextResponse.json({
+        ok: true,
+        state: getPublicPortalState(db),
+      });
+    }
+
     // Validação da Senha de Confirmação do Líder (232356)
     const token = cookies().get(COOKIE_NAME)?.value;
     const session = verifySessionToken(token);

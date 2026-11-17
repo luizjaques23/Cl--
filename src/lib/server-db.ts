@@ -1,4 +1,5 @@
 import fs from "fs";
+import os from "os";
 import path from "path";
 import crypto from "crypto";
 import {
@@ -32,6 +33,12 @@ interface InternalDatabaseFile extends PortalDatabaseState {
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const DB_FILE_PATH = path.join(DATA_DIR, "alcatrazz-db.json");
+const TMP_DB_FILE_PATH = path.join(os.tmpdir(), "alcatrazz-alcatrazz-db.json");
+
+declare global {
+  // eslint-disable-next-line no-var
+  var __alcatrazzServerDb: InternalDatabaseFile | undefined;
+}
 
 function getSessionSecret(): string {
   return (
@@ -126,34 +133,82 @@ function createInitialDb(): InternalDatabaseFile {
   };
 }
 
-export function readServerDb(): InternalDatabaseFile {
+function tryReadJsonFile(filePath: string): InternalDatabaseFile | null {
   try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-    if (!fs.existsSync(DB_FILE_PATH)) {
-      const initial = createInitialDb();
-      fs.writeFileSync(DB_FILE_PATH, JSON.stringify(initial, null, 2), "utf-8");
-      return initial;
-    }
-    const raw = fs.readFileSync(DB_FILE_PATH, "utf-8");
+    if (!fs.existsSync(filePath)) return null;
+    const raw = fs.readFileSync(filePath, "utf-8");
     const parsed = JSON.parse(raw) as InternalDatabaseFile;
-    return parsed;
+    if (parsed && Array.isArray(parsed.jogadores)) {
+      return parsed;
+    }
+    return null;
   } catch {
-    return createInitialDb();
+    return null;
   }
 }
 
+export function readServerDb(): InternalDatabaseFile {
+  if (globalThis.__alcatrazzServerDb) {
+    return globalThis.__alcatrazzServerDb;
+  }
+
+  const localDb = tryReadJsonFile(DB_FILE_PATH);
+  const tmpDb = tryReadJsonFile(TMP_DB_FILE_PATH);
+
+  let chosen: InternalDatabaseFile | null = null;
+  if (localDb && tmpDb) {
+    const localTime = Date.parse(localDb.last_updated || "1970-01-01");
+    const tmpTime = Date.parse(tmpDb.last_updated || "1970-01-01");
+    chosen = tmpTime > localTime ? tmpDb : localDb;
+  } else {
+    chosen = tmpDb || localDb;
+  }
+
+  if (!chosen) {
+    chosen = createInitialDb();
+    try {
+      if (!fs.existsSync(DATA_DIR)) {
+        fs.mkdirSync(DATA_DIR, { recursive: true });
+      }
+      fs.writeFileSync(DB_FILE_PATH, JSON.stringify(chosen, null, 2), "utf-8");
+    } catch {
+      try {
+        fs.writeFileSync(TMP_DB_FILE_PATH, JSON.stringify(chosen, null, 2), "utf-8");
+      } catch {
+        // memory fallback only
+      }
+    }
+  }
+
+  globalThis.__alcatrazzServerDb = chosen;
+  return chosen;
+}
+
 export function writeServerDb(db: InternalDatabaseFile): PortalDatabaseState {
+  db.last_updated = new Date().toISOString();
+  globalThis.__alcatrazzServerDb = db;
+
+  const serialized = JSON.stringify(db, null, 2);
+  let wrotePrimary = false;
+
   try {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });
     }
-    db.last_updated = new Date().toISOString();
-    fs.writeFileSync(DB_FILE_PATH, JSON.stringify(db, null, 2), "utf-8");
-  } catch (err) {
-    console.error("Erro ao gravar banco de dados local:", err);
+    fs.writeFileSync(DB_FILE_PATH, serialized, "utf-8");
+    wrotePrimary = true;
+  } catch {
+    // Em ambientes Serverless (ex: Vercel), process.cwd() é somente leitura (EROFS)
   }
+
+  if (!wrotePrimary) {
+    try {
+      fs.writeFileSync(TMP_DB_FILE_PATH, serialized, "utf-8");
+    } catch (err) {
+      console.error("Erro ao gravar banco de dados temporário:", err);
+    }
+  }
+
   return getPublicPortalState(db);
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   Crown,
   Swords,
@@ -99,6 +99,8 @@ export default function AlcatrazzOfficialPortal() {
   const [pinError, setPinError] = useState<string | null>(null);
   const [confirmingPin, setConfirmingPin] = useState(false);
 
+  const lastMutationRef = useRef<number>(0);
+
   const notify = useCallback((type: "success" | "error", message: string) => {
     setToast({ type, message });
     if (type === "success") {
@@ -112,14 +114,61 @@ export default function AlcatrazzOfficialPortal() {
     return () => clearTimeout(timer);
   }, [toast]);
 
-  const fetchPortalData = useCallback(async () => {
+  const fetchPortalData = useCallback(async (force = false) => {
+    // Evita que uma sincronização em segundo plano sobrescreva um salvamento recém-feito
+    if (!force && Date.now() - lastMutationRef.current < 10000) {
+      return;
+    }
+
     try {
       const res = await fetch("/api/portal", { cache: "no-store" });
       if (res.ok) {
-        const data = (await res.json()) as PortalDatabaseState;
-        setPortalState(data);
+        const serverData = (await res.json()) as PortalDatabaseState;
+
+        let localBackup: PortalDatabaseState | null = null;
         try {
-          localStorage.setItem("alcatrazz_portal_backup", JSON.stringify(data));
+          const cached = localStorage.getItem("alcatrazz_portal_backup");
+          if (cached) localBackup = JSON.parse(cached) as PortalDatabaseState;
+        } catch {
+          localBackup = null;
+        }
+
+        const serverIsEmpty =
+          serverData.jogadores.length === 0 &&
+          serverData.avisos.length === 0 &&
+          serverData.eventos.length === 0;
+
+        const backupHasData =
+          localBackup &&
+          (localBackup.jogadores.length > 0 ||
+            localBackup.avisos.length > 0 ||
+            localBackup.eventos.length > 0);
+
+        const backupIsNewer =
+          localBackup &&
+          Date.parse(localBackup.last_updated || "1970-01-01") >
+            Date.parse(serverData.last_updated || "1970-01-01");
+
+        // Se o servidor retornou vazio (ex: cold start serverless) mas o navegador tem dados mais novos salvos, restaura!
+        if (serverIsEmpty && backupHasData && backupIsNewer && localBackup) {
+          setPortalState(localBackup);
+          fetch("/api/portal", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              action: "hydrate_state",
+              payload: localBackup,
+            }),
+          }).catch(() => {});
+          return;
+        }
+
+        setPortalState(serverData);
+        try {
+          localStorage.setItem(
+            "alcatrazz_portal_backup",
+            JSON.stringify(serverData)
+          );
         } catch {
           // ignore storage quota errors
         }
@@ -150,12 +199,24 @@ export default function AlcatrazzOfficialPortal() {
   }, []);
 
   useEffect(() => {
-    fetchPortalData();
+    try {
+      const cached = localStorage.getItem("alcatrazz_portal_backup");
+      if (cached) {
+        const parsed = JSON.parse(cached) as PortalDatabaseState;
+        if (parsed && Array.isArray(parsed.jogadores)) {
+          setPortalState(parsed);
+        }
+      }
+    } catch {
+      // ignore storage errors
+    }
+
+    fetchPortalData(true);
     fetchAuthStatus();
 
     // Sincronização automática em tempo real a cada 6 segundos para todos os dispositivos
     const syncInterval = setInterval(() => {
-      fetchPortalData();
+      fetchPortalData(false);
     }, 6000);
 
     if ("serviceWorker" in navigator) {
@@ -209,6 +270,7 @@ export default function AlcatrazzOfficialPortal() {
     senhaConfirmacao: string,
     successMsg: string
   ) => {
+    lastMutationRef.current = Date.now();
     const res = await fetch("/api/portal", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -223,6 +285,7 @@ export default function AlcatrazzOfficialPortal() {
       throw new Error(data.error || "Operação recusada.");
     }
     if (data.state) {
+      lastMutationRef.current = Date.now();
       setPortalState(data.state);
       try {
         localStorage.setItem(
