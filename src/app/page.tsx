@@ -42,7 +42,6 @@ import { HierarchySection } from "@/components/HierarchySection";
 import { NoticesSection } from "@/components/NoticesSection";
 import { EventsSection } from "@/components/EventsSection";
 import { RankingSection } from "@/components/RankingSection";
-import { AdminPanelSection } from "@/components/AdminPanelSection";
 import { RoleBadge } from "@/components/RoleBadge";
 
 interface PendingConfirmationAction {
@@ -498,7 +497,6 @@ export default function AlcatrazzOfficialPortal() {
               { label: "Mural de Avisos", href: "mural" },
               { label: "Calendário & SoD", href: "eventos" },
               { label: "Ranking dos Guerreiros (Editar)", href: "ranking" },
-              { label: "Painel & Histórico", href: "admin" },
             ].map((item) => (
               <button
                 key={item.href}
@@ -946,7 +944,6 @@ export default function AlcatrazzOfficialPortal() {
             "Confirmar Remoção de Membro"
           )
         }
-        onOpenAdminAuth={() => scrollToSection("admin")}
       />
 
       {/* =====================================================================
@@ -1080,36 +1077,6 @@ export default function AlcatrazzOfficialPortal() {
             "Confirmar Remoção do Ranking"
           )
         }
-      />
-
-      {/* =====================================================================
-          9. PAINEL ADMINISTRATIVO E HISTÓRICO
-      ===================================================================== */}
-      <AdminPanelSection
-        portalState={portalState}
-        session={session}
-        demoAdmins={demoAdmins}
-        onAuthChanged={async () => {
-          await fetchAuthStatus();
-          await fetchPortalData();
-        }}
-        onSaveAdminUser={(user) =>
-          executeServerAction(
-            "save_admin_user",
-            user,
-            "Administrador salvo com sucesso!",
-            "Confirmar Cadastro de Administrador"
-          )
-        }
-        onResetDemoData={() =>
-          executeServerAction(
-            "reset_demo_data",
-            {},
-            "Dados demonstrativos [EXEMPLO] restaurados!",
-            "Confirmar Restauração dos Dados"
-          )
-        }
-        onNotify={notify}
       />
 
       {/* =====================================================================

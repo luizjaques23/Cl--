@@ -49,7 +49,7 @@ interface MembersSectionProps {
   canManagePlayers: boolean;
   onSavePlayer: (player: Partial<Jogador>) => Promise<void>;
   onDeletePlayer: (id: string) => Promise<void>;
-  onOpenAdminAuth: () => void;
+  onOpenAdminAuth?: () => void;
 }
 
 export function MembersSection({
