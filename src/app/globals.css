@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-black: #090909;
+  --blood-red: #790D16;
+  --gold: #D6A33A;
+  --fire-orange: #D66A19;
+  --stone-gray: #292929;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #090909;
+  color: #f5f0e6;
+}
+
+body {
+  background-color: #090909;
+  color: #f5f0e6;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(121, 13, 22, 0.22) 0%, transparent 60%),
+    radial-gradient(circle at 85% 30%, rgba(214, 106, 25, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 15% 70%, rgba(214, 163, 58, 0.07) 0%, transparent 50%);
+}
+
+/* Custom Medieval Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090909;
+  border-left: 1px solid rgba(214, 163, 58, 0.15);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #790D16 0%, #D6A33A 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #D66A19 0%, #f3c969 100%);
+}
+
+/* Medieval Ornate Card Styles */
+@layer components {
+  .medieval-card {
+    position: relative;
+    background: linear-gradient(165deg, rgba(22, 19, 19, 0.94) 0%, rgba(9, 9, 9, 0.98) 100%);
+    border: 1px solid rgba(214, 163, 58, 0.32);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(121, 13, 22, 0.12);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .medieval-card:hover {
+    border-color: rgba(214, 163, 58, 0.7);
+    box-shadow: 0 12px 35px -5px rgba(121, 13, 22, 0.4), 0 0 20px rgba(214, 163, 58, 0.2), inset 0 0 25px rgba(214, 163, 58, 0.08);
+  }
+
+  .gold-text-gradient {
+    background: linear-gradient(180deg, #FFF3D1 0%, #D6A33A 55%, #9B6C15 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .fire-text-gradient {
+    background: linear-gradient(135deg, #FFD08A 0%, #D6A33A 40%, #D66A19 80%, #790D16 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-royal-gold {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #9e7019 0%, #D6A33A 50%, #b88422 100%);
+    color: #090909;
+    font-weight: 700;
+    border: 1px solid #f5d77f;
+    box-shadow: 0 0 18px rgba(214, 163, 58, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    transition: all 0.25s ease;
+  }
+
+  .btn-royal-gold:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 28px rgba(214, 163, 58, 0.65), 0 0 12px rgba(214, 106, 25, 0.5);
+    filter: brightness(1.08);
+  }
+
+  .btn-blood-crimson {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #790D16 0%, #a1131f 50%, #52070d 100%);
+    color: #f8efe0;
+    font-weight: 600;
+    border: 1px solid rgba(214, 163, 58, 0.5);
+    box-shadow: 0 0 18px rgba(121, 13, 22, 0.5), inset 0 1px 1px rgba(214, 163, 58, 0.25);
+    transition: all 0.25s ease;
+  }
+
+  .btn-blood-crimson:hover {
+    transform: translateY(-1px);
+    border-color: #D6A33A;
+    box-shadow: 0 0 26px rgba(214, 106, 25, 0.45), 0 0 15px rgba(121, 13, 22, 0.8);
+  }
+
+  .input-medieval {
+    background-color: rgba(12, 10, 10, 0.9);
+    border: 1px solid rgba(214, 163, 58, 0.3);
+    color: #f5f0e6;
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.875rem;
+    transition: all 0.2s ease;
+  }
+
+  .input-medieval:focus {
+    outline: none;
+    border-color: #D6A33A;
+    box-shadow: 0 0 14px rgba(214, 163, 58, 0.3);
+  }
+}
+
+@keyframes floatEmber {
+  0% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.75;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-120px) translateX(20px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+.ember-particle {
+  animation: floatEmber 6s infinite ease-in-out;
+}
