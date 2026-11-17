@@ -122,10 +122,10 @@ export function NoticesSection({
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#790D16]/30 border border-[#D6A33A]/40 text-[#D6A33A] text-xs uppercase tracking-widest mb-3">
             <ScrollText className="w-3.5 h-3.5" /> Decretos do Conselho
           </div>
-          <h2 className="font-medieval text-3xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
+          <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
             MURAL DE AVISOS & COMUNICADOS
           </h2>
-          <p className="text-stone-400 mt-2 max-w-2xl text-sm sm:text-base">
+          <p className="text-stone-400 mt-2 max-w-2xl text-xs sm:text-base">
             Acompanhe as convocações de guerra, regras do clã, editais de
             recrutamento e decretos oficiais publicados pela liderança ALCATRAZZ.
           </p>
@@ -143,7 +143,7 @@ export function NoticesSection({
                 fixado: false,
               })
             }
-            className="btn-royal-gold px-5 py-2.5 rounded-lg flex items-center gap-2 text-sm font-medieval uppercase tracking-wider"
+            className="btn-royal-gold w-full md:w-auto justify-center px-5 py-3 rounded-xl flex items-center gap-2 text-xs sm:text-sm font-medieval uppercase tracking-wider min-h-[44px]"
           >
             <Plus className="w-4 h-4" /> Publicar Comunicado
           </button>

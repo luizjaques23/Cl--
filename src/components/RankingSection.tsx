@@ -159,23 +159,22 @@ export function RankingSection({
       className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#D6A33A]/15"
     >
       {/* Cabeçalho */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#790D16]/30 border border-[#D6A33A]/40 text-[#D6A33A] text-xs uppercase tracking-widest mb-3">
-            <Trophy className="w-3.5 h-3.5" /> Panteão de Glória • Sincronizado em
-            Tempo Real
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-5">
+        <div className="min-w-0">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#790D16]/30 border border-[#D6A33A]/40 text-[#D6A33A] text-[10px] sm:text-xs uppercase tracking-widest mb-3">
+            <Trophy className="w-3.5 h-3.5 shrink-0" /> Panteão de Glória • Tempo Real
           </div>
-          <h2 className="font-medieval text-3xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
+          <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide leading-tight">
             RANKING OFICIAL DOS JOGADORES
           </h2>
-          <p className="text-stone-400 mt-2 max-w-2xl text-sm sm:text-base">
+          <p className="text-stone-400 mt-2 max-w-2xl text-xs sm:text-base leading-relaxed">
             Cadastre guerreiros, insira novas pontuações e atualize a
             classificação diretamente pelo site. Todas as alterações confirmadas
             com a senha do Líder ficam salvas para todos os dispositivos.
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex items-center w-full md:w-auto">
           <button
             onClick={() =>
               setNewRankingEntry({
@@ -189,29 +188,29 @@ export function RankingSection({
                 motivo_ranking: "Cadastro direto no Ranking Oficial",
               })
             }
-            className="btn-royal-gold px-5 py-3 rounded-xl text-xs sm:text-sm font-medieval uppercase tracking-wider flex items-center gap-2 shadow-gold-glow"
+            className="btn-royal-gold w-full md:w-auto justify-center px-5 py-3 rounded-xl text-xs sm:text-sm font-medieval uppercase tracking-wider flex items-center gap-2 shadow-gold-glow min-h-[44px]"
           >
-            <UserPlus className="w-4 h-4" /> + Cadastrar no Ranking
+            <UserPlus className="w-4 h-4 shrink-0" /> + Cadastrar no Ranking
           </button>
         </div>
       </div>
 
       {/* Seletor de Critérios do Ranking */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-10 bg-[#121010] p-4 rounded-xl border border-[#D6A33A]/30">
-        <span className="text-xs font-medieval uppercase tracking-wider text-[#D6A33A]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-8 sm:mb-10 bg-[#121010] p-3.5 sm:p-4 rounded-xl border border-[#D6A33A]/30">
+        <span className="text-[11px] sm:text-xs font-medieval uppercase tracking-wider text-[#D6A33A] shrink-0">
           Ordenar Classificação Por:
         </span>
-        <div className="flex flex-wrap gap-2">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 w-full sm:w-auto">
           {[
-            { id: "pontuacao", label: "🏆 Pontuação Geral" },
+            { id: "pontuacao", label: "🏆 Pontuação" },
             { id: "level", label: "⚔️ Level" },
-            { id: "participacoes_eventos", label: "🔥 Participação em Eventos" },
-            { id: "contribuicao_cla", label: "🛡️ Contribuição ao Clã" },
+            { id: "participacoes_eventos", label: "🔥 Eventos" },
+            { id: "contribuicao_cla", label: "🛡️ Contribuição" },
           ].map((item) => (
             <button
               key={item.id}
               onClick={() => setCriterion(item.id as RankingCriterion)}
-              className={`px-3.5 py-2 rounded-lg text-xs font-medieval uppercase tracking-wider border transition ${criterion === item.id
+              className={`px-3 py-2.5 sm:py-2 rounded-lg text-[11px] sm:text-xs font-medieval uppercase tracking-wider border transition text-center truncate ${criterion === item.id
                 ? "bg-gradient-to-r from-[#9e7019] via-[#D6A33A] to-[#b88422] text-black font-bold border-[#f5d77f] shadow-gold-glow"
                 : "bg-black/60 text-stone-300 border-stone-800 hover:border-[#D6A33A]/50"
                 }`}
@@ -413,8 +412,154 @@ export function RankingSection({
         </div>
       )}
 
-      {/* Tabela de Classificação Geral */}
-      <div className="medieval-card rounded-xl overflow-hidden mb-8">
+      {/* Lista de Classificação Geral: Cards Retos no Celular + Tabela Completa no Desktop */}
+      <div className="md:hidden space-y-3 mb-8">
+        {rankedPlayers.length === 0 ? (
+          <div className="medieval-card rounded-xl p-6 text-center text-stone-400 italic text-xs">
+            Nenhum guerreiro cadastrado no ranking ainda. Clique em{" "}
+            <button
+              onClick={() =>
+                setNewRankingEntry({
+                  nickname: "",
+                  classe: "Cavaleiro",
+                  cargo_id: "cargo-membro",
+                  level: 150,
+                  pontuacao: 5000,
+                  participacoes_eventos: 1,
+                  contribuicao_cla: 500,
+                  motivo_ranking: "Primeiro guerreiro do Ranking Oficial",
+                })
+              }
+              className="text-[#D6A33A] font-medieval uppercase underline hover:text-[#f3c969] ml-1"
+            >
+              + Cadastrar no Ranking
+            </button>{" "}
+            para começar.
+          </div>
+        ) : (
+          rankedPlayers.map((player, index) => {
+            const pos = index + 1;
+            const cargo = cargoMap.get(player.cargo_id);
+            return (
+              <div
+                key={player.id}
+                className="medieval-card rounded-xl p-4 flex flex-col gap-3"
+              >
+                {/* Linha Superior: Posição + Avatar + Nick + Pontos */}
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="shrink-0">
+                      {pos === 1 ? (
+                        <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-[#D6A33A] text-black font-medieval font-black text-xs shadow-gold-glow">
+                          🥇 1º
+                        </span>
+                      ) : pos === 2 ? (
+                        <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-slate-300 text-black font-medieval font-black text-xs">
+                          🥈 2º
+                        </span>
+                      ) : pos === 3 ? (
+                        <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-amber-600 text-black font-medieval font-black text-xs">
+                          🥉 3º
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-stone-900 border border-stone-700 text-stone-300 font-medieval font-bold text-xs">
+                          #{pos}
+                        </span>
+                      )}
+                    </div>
+
+                    <img
+                      src={player.avatar_url || "/assets/alcatrazz-crest.jpg"}
+                      alt={player.nickname}
+                      className="w-10 h-10 rounded-lg object-cover border border-[#D6A33A]/50 shrink-0"
+                    />
+
+                    <div className="min-w-0">
+                      <div className="font-medieval font-bold text-sm text-stone-100 truncate">
+                        {player.nickname}
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[11px] text-stone-400 truncate">
+                        {renderClassIcon(
+                          player.classe,
+                          "w-3 h-3 text-[#D6A33A] shrink-0"
+                        )}
+                        <span className="truncate">{player.classe}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-right shrink-0">
+                    <div className="font-medieval font-extrabold text-sm text-[#D6A33A]">
+                      {player.pontuacao.toLocaleString("pt-BR")}
+                    </div>
+                    <div className="text-[10px] text-stone-500 uppercase">
+                      pontos
+                    </div>
+                  </div>
+                </div>
+
+                {/* Linha do Meio: Cargo + Level + Eventos + Contribuição */}
+                <div className="grid grid-cols-4 gap-2 pt-2.5 border-t border-stone-800/80 items-center text-center">
+                  <div className="text-left">
+                    <RoleBadge cargo={cargo} size="sm" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-stone-500 block">
+                      Level
+                    </span>
+                    <strong className="font-medieval text-xs text-stone-200">
+                      Lv.{player.level}
+                    </strong>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-stone-500 block">
+                      Eventos
+                    </span>
+                    <strong className="font-medieval text-xs text-stone-200">
+                      {player.participacoes_eventos}
+                    </strong>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-stone-500 block">
+                      Contrib.
+                    </span>
+                    <strong className="font-medieval text-xs text-[#D66A19]">
+                      {player.contribuicao_cla}
+                    </strong>
+                  </div>
+                </div>
+
+                {/* Linha Inferior: Ações */}
+                <div className="flex items-center gap-2 pt-2 border-t border-stone-800/60">
+                  <button
+                    onClick={() => {
+                      setAdjustingPlayer(player);
+                      setNovoLevel(String(player.level));
+                      setAbsolutoPts(String(player.pontuacao));
+                    }}
+                    className="flex-1 py-2 px-3 rounded-lg bg-[#D6A33A]/20 hover:bg-[#D6A33A]/35 text-[#D6A33A] border border-[#D6A33A]/50 text-xs font-medieval uppercase inline-flex items-center justify-center gap-1.5 transition min-h-[38px]"
+                  >
+                    <SlidersHorizontal className="w-3.5 h-3.5" /> Editar Pontos
+                  </button>
+                  {onDeletePlayer && (
+                    <button
+                      onClick={() => onDeletePlayer(player.id)}
+                      className="p-2 rounded-lg bg-[#790D16]/30 hover:bg-[#790D16]/60 text-rose-300 border border-rose-800/50 transition min-h-[38px] min-w-[38px] flex items-center justify-center"
+                      title="Remover do Ranking"
+                      aria-label="Remover do Ranking"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
+
+      {/* Tabela de Classificação Geral (Desktop/Tablet) */}
+      <div className="hidden md:block medieval-card rounded-xl overflow-hidden mb-8">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>

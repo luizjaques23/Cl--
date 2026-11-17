@@ -181,27 +181,27 @@ export function MembersSection({
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#790D16]/30 border border-[#D6A33A]/40 text-[#D6A33A] text-xs uppercase tracking-widest mb-3">
             <Shield className="w-3.5 h-3.5" /> Exército Imortal • Priston Tale
           </div>
-          <h2 className="font-medieval text-3xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
+          <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
             SISTEMA DE MEMBROS & GUERREIROS
           </h2>
-          <p className="text-stone-400 mt-2 max-w-2xl text-sm sm:text-base">
+          <p className="text-stone-400 mt-2 max-w-2xl text-xs sm:text-base">
             Consulte o efetivo oficial da irmandade ALCATRAZZ. Filtre por classe de
             combate, patente hierárquica, nível ou pesquise guerreiros pelo nickname.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 w-full md:w-auto">
           {canManagePlayers ? (
             <button
               onClick={openNewPlayerModal}
-              className="btn-royal-gold px-5 py-2.5 rounded-lg flex items-center gap-2 text-sm font-medieval tracking-wider uppercase"
+              className="btn-royal-gold w-full md:w-auto justify-center px-5 py-3 rounded-xl flex items-center gap-2 text-xs sm:text-sm font-medieval tracking-wider uppercase min-h-[44px]"
             >
               <UserPlus className="w-4 h-4" /> Alistar Guerreiro
             </button>
           ) : (
             <button
               onClick={onOpenAdminAuth}
-              className="btn-blood-crimson px-4 py-2.5 rounded-lg flex items-center gap-2 text-xs sm:text-sm font-medieval tracking-wider uppercase"
+              className="btn-blood-crimson w-full md:w-auto justify-center px-4 py-3 rounded-xl flex items-center gap-2 text-xs sm:text-sm font-medieval tracking-wider uppercase min-h-[44px]"
             >
               <Crown className="w-4 h-4 text-[#D6A33A]" /> Gerenciar Efetivo (Admin)
             </button>

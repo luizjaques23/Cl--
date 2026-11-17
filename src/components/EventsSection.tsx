@@ -160,7 +160,7 @@ export function EventsSection({
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
           {canManageEvents && (
             <button
               onClick={() =>
@@ -177,7 +177,7 @@ export function EventsSection({
                   destaque: true,
                 })
               }
-              className="btn-royal-gold px-5 py-2.5 rounded-lg flex items-center gap-2 text-sm font-medieval uppercase tracking-wider"
+              className="btn-royal-gold w-full md:w-auto justify-center px-5 py-3 rounded-xl flex items-center gap-2 text-xs sm:text-sm font-medieval uppercase tracking-wider min-h-[44px]"
             >
               <Plus className="w-4 h-4" /> Criar Evento / SoD
             </button>

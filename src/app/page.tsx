@@ -568,20 +568,9 @@ export default function AlcatrazzOfficialPortal() {
         </div>
 
         {/* Conteúdo Central Hero */}
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          {/* Identificação Oficial do Desenvolvedor */}
-          <a
-            href="https://www.instagram.com/luiz_jaques23?srtk=MW5pamVsYXJveG05aA%3D%3D&utm_source=qr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/80 border border-[#D6A33A]/60 text-[#D6A33A] hover:text-white hover:border-[#D6A33A] text-xs font-medieval uppercase tracking-[0.2em] mb-6 shadow-gold-glow transition group"
-          >
-            <Instagram className="w-4 h-4 text-[#E1306C] group-hover:scale-110 transition-transform" />
-            <span>Desenvolvido por Luiz Jaques</span>
-          </a>
-
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
           {/* Brasão Oficial Exclusivo do Clã ALCATRAZZ */}
-          <div className="relative mx-auto w-36 h-36 sm:w-44 sm:h-44 mb-6">
+          <div className="relative mx-auto w-32 h-32 sm:w-44 sm:h-44 mb-5 sm:mb-6">
             <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-[#790D16] via-[#D6A33A] to-[#D66A19] opacity-60 blur-xl animate-pulse" />
             <img
               src="/assets/alcatrazz-crest.jpg"
@@ -591,12 +580,12 @@ export default function AlcatrazzOfficialPortal() {
           </div>
 
           {/* Nome do Clã em Destaque */}
-          <h1 className="font-medieval text-5xl sm:text-7xl lg:text-8xl font-black tracking-[0.12em] gold-text-gradient drop-shadow-[0_5px_25px_rgba(214,163,58,0.45)]">
+          <h1 className="font-medieval text-4xl sm:text-7xl lg:text-8xl font-black tracking-[0.08em] sm:tracking-[0.12em] gold-text-gradient drop-shadow-[0_5px_25px_rgba(214,163,58,0.45)]">
             ALCATRAZZ
           </h1>
 
           {/* Slogan Oficial */}
-          <p className="font-medieval text-base sm:text-xl lg:text-2xl tracking-[0.28em] text-[#D66A19] font-bold uppercase mt-3">
+          <p className="font-medieval text-xs sm:text-xl lg:text-2xl tracking-[0.14em] sm:tracking-[0.28em] text-[#D66A19] font-bold uppercase mt-3">
             &ldquo;ALCATRAZZ — HONRA, LEALDADE E PODER.&rdquo;
           </p>
 
@@ -1101,39 +1090,37 @@ export default function AlcatrazzOfficialPortal() {
       />
 
       {/* =====================================================================
-          RODAPÉ OFICIAL — DESENVOLVIDO POR LUIZ JAQUES (INSTAGRAM)
+          RODAPÉ OFICIAL — DESENVOLVIDO POR LUIZ JAQUES (MINIMALISTA)
       ===================================================================== */}
-      <footer className="mt-auto bg-[#060505] border-t-2 border-[#D6A33A]/40 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
+      <footer className="mt-auto bg-[#060505] border-t border-[#D6A33A]/30 py-8 px-4 sm:px-6 lg:px-8 pb-20 sm:pb-8">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3 text-center sm:text-left">
             <img
               src="/assets/alcatrazz-crest.jpg"
               alt="Brasão ALCATRAZZ"
-              className="w-14 h-14 rounded-xl object-cover border border-[#D6A33A]"
+              className="w-10 h-10 rounded-lg object-cover border border-[#D6A33A]/70 shrink-0"
             />
             <div>
-              <div className="font-medieval text-xl font-black gold-text-gradient tracking-widest">
-                ALCATRAZZ HONRA • LEALDADE • PODER
+              <div className="font-medieval text-sm sm:text-base font-bold gold-text-gradient tracking-widest">
+                ALCATRAZZ • HONRA, LEALDADE E PODER
               </div>
-              <p className="text-xs text-stone-400 mt-1">
-                Portal Oficial do Clã de MMORPG (Universo Priston Tale)
+              <p className="text-[11px] text-stone-500 mt-0.5">
+                Portal Oficial do Clã (Universo Priston Tale)
               </p>
             </div>
           </div>
 
-          <div className="text-center md:text-right flex flex-col items-center md:items-end gap-1.5">
+          <div className="text-center md:text-right flex flex-col items-center md:items-end gap-1">
             <a
               href="https://www.instagram.com/luiz_jaques23?srtk=MW5pamVsYXJveG05aA%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-lg bg-gradient-to-r from-[#833ab4]/25 via-[#fd1d1d]/25 to-[#fcb045]/25 border border-[#D6A33A]/50 text-[#D6A33A] hover:text-white hover:border-[#D6A33A] transition shadow-gold-glow group"
+              className="inline-flex items-center gap-1.5 text-[11px] text-stone-400 hover:text-[#D6A33A] transition group"
             >
-              <Instagram className="w-4 h-4 text-[#E1306C] group-hover:scale-110 transition-transform" />
-              <span className="font-medieval text-sm font-bold tracking-wide">
-                Desenvolvido por Luiz Jaques
-              </span>
+              <Instagram className="w-3.5 h-3.5 text-[#E1306C]/80 group-hover:text-[#E1306C] transition-colors" />
+              <span>Desenvolvido por Luiz Jaques</span>
             </a>
-            <p className="text-xs text-stone-500 mt-1">
+            <p className="text-[11px] text-stone-600">
               © {new Date().getFullYear()} ALCATRAZZ. Todos os direitos
               reservados.
             </p>
