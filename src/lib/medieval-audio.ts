@@ -49,7 +49,7 @@ class MedievalAudioEngine {
       el.addEventListener("ended", () => {
         if (!this.muted) {
           el.currentTime = 0;
-          el.play().catch(() => {});
+          el.play().catch(() => { });
         }
       });
 
@@ -87,25 +87,25 @@ class MedievalAudioEngine {
     const audio = this.ensureAudio();
     if (!audio) return;
 
-    audio.muted = false;
-    if (!audio.paused) {
-      this.playing = true;
-      this.emit();
-      return;
-    }
-
-    audio
-      .play()
-      .then(() => {
+      audio.muted = false;
+      if (!audio.paused) {
         this.playing = true;
         this.emit();
-      })
-      .catch(() => {
-        // Caso o navegador bloqueie autoplay antes do primeiro clique, aguardará o primeiro toque do usuário
-        this.playing = false;
-        this.emit();
-      });
-  }
+        return;
+      }
+
+      audio
+        .play()
+        .then(() => {
+          this.playing = true;
+          this.emit();
+        })
+        .catch(() => {
+          // Caso o navegador bloqueie autoplay antes do primeiro clique, aguardará o primeiro toque do usuário
+          this.playing = false;
+          this.emit();
+        });
+    }
 
   public stopAmbient() {
     if (this.audio) {
