@@ -59,9 +59,8 @@ export function MedievalSplashScreen({ onFinish }: MedievalSplashScreenProps) {
 
   const handleEnter = (userTriggered: boolean) => {
     if (!visible) return;
-    if (userTriggered && !medievalAudio.getState().muted) {
+    if (!medievalAudio.getState().muted) {
       medievalAudio.startAmbient();
-      medievalAudio.playSuccessFanfare();
     }
     setVisible(false);
     setTimeout(() => {

@@ -14,19 +14,32 @@ export function MedievalAudioControl({
   useEffect(() => {
     const unsub = medievalAudio.subscribe(setAudioState);
 
-    // Garante que em celulares (iOS/Android), o primeiro toque libere o áudio se não estiver silenciado
-    const handleFirstTouch = () => {
+    // Tenta iniciar imediatamente se não estiver silenciado
+    if (!medievalAudio.getState().muted) {
+      medievalAudio.startAmbient();
+    }
+
+    // Garante que em celulares (iOS/Android) e navegadores com bloqueio de autoplay, o primeiro toque libere a música
+    const handleUnlock = () => {
       const current = medievalAudio.getState();
       if (!current.muted && !current.playing) {
         medievalAudio.startAmbient();
       }
-      window.removeEventListener("pointerdown", handleFirstTouch);
+      if (medievalAudio.getState().playing || medievalAudio.getState().muted) {
+        window.removeEventListener("pointerdown", handleUnlock);
+        window.removeEventListener("click", handleUnlock);
+        window.removeEventListener("keydown", handleUnlock);
+      }
     };
 
-    window.addEventListener("pointerdown", handleFirstTouch, { passive: true });
+    window.addEventListener("pointerdown", handleUnlock, { passive: true });
+    window.addEventListener("click", handleUnlock, { passive: true });
+    window.addEventListener("keydown", handleUnlock, { passive: true });
     return () => {
       unsub();
-      window.removeEventListener("pointerdown", handleFirstTouch);
+      window.removeEventListener("pointerdown", handleUnlock);
+      window.removeEventListener("click", handleUnlock);
+      window.removeEventListener("keydown", handleUnlock);
     };
   }, []);
 
