@@ -4,8 +4,8 @@
   "description": "Portal Oficial do Clã de MMORPG ALCATRAZZ — Honra, Lealdade e Poder. Desenvolvido por Zephira World e Luiz Jaques.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#090909",
-  "theme_color": "#790D16",
+  "background_color": "#07050b",
+  "theme_color": "#581c87",
   "orientation": "portrait-primary",
   "icons": [
     {

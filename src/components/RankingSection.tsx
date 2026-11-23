@@ -160,18 +160,25 @@ export function RankingSection({
     >
       {/* Cabeçalho */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-5">
-        <div className="min-w-0">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#790D16]/30 border border-[#D6A33A]/40 text-[#D6A33A] text-[10px] sm:text-xs uppercase tracking-widest mb-3">
-            <Trophy className="w-3.5 h-3.5 shrink-0" /> Panteão de Glória • Tempo Real
+        <div className="flex items-start sm:items-center gap-4 min-w-0">
+          <img
+            src="/assets/alcatrazz-crest.jpg"
+            alt="Logo Oficial ALCATRAZZ"
+            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
+          />
+          <div className="min-w-0">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-[10px] sm:text-xs uppercase tracking-widest mb-2">
+              <Trophy className="w-3.5 h-3.5 shrink-0" /> Panteão de Glória • Tempo Real
+            </div>
+            <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide leading-tight">
+              RANKING OFICIAL DOS JOGADORES
+            </h2>
+            <p className="text-stone-400 mt-1.5 max-w-2xl text-xs sm:text-base leading-relaxed">
+              Cadastre guerreiros, insira novas pontuações e atualize a
+              classificação diretamente pelo site. Todas as alterações confirmadas
+              com a senha do Líder ficam salvas para todos os dispositivos.
+            </p>
           </div>
-          <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide leading-tight">
-            RANKING OFICIAL DOS JOGADORES
-          </h2>
-          <p className="text-stone-400 mt-2 max-w-2xl text-xs sm:text-base leading-relaxed">
-            Cadastre guerreiros, insira novas pontuações e atualize a
-            classificação diretamente pelo site. Todas as alterações confirmadas
-            com a senha do Líder ficam salvas para todos os dispositivos.
-          </p>
         </div>
 
         <div className="flex items-center w-full md:w-auto">
@@ -223,10 +230,12 @@ export function RankingSection({
 
       {/* PÓDIO IMPERIAL (1º, 2º e 3º Lugares com Medalhas de Ouro, Prata e Bronze) */}
       {rankedPlayers.length === 0 ? (
-        <div className="medieval-card rounded-2xl p-10 text-center border-2 border-dashed border-[#D6A33A]/40 mb-12">
-          <div className="w-16 h-16 rounded-full bg-[#790D16]/40 border-2 border-[#D6A33A] flex items-center justify-center text-[#D6A33A] mx-auto mb-4 shadow-gold-glow">
-            <Trophy className="w-8 h-8" />
-          </div>
+        <div className="medieval-card rounded-2xl p-10 text-center border-2 border-dashed border-[#a855f7]/45 mb-12">
+          <img
+            src="/assets/alcatrazz-crest.jpg"
+            alt="Logo Oficial ALCATRAZZ"
+            className="w-24 h-24 rounded-2xl object-cover border-2 border-[#D6A33A] mx-auto mb-4 shadow-gold-glow"
+          />
           <h3 className="font-medieval text-2xl font-bold gold-text-gradient mb-2">
             O Panteão ALCATRAZZ Aguarda Seus Primeiros Conquistadores
           </h3>

@@ -95,18 +95,25 @@ export function HierarchySection({
       className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#D6A33A]/15"
     >
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#790D16]/30 border border-[#D6A33A]/40 text-[#D6A33A] text-xs uppercase tracking-widest mb-3">
-            <Crown className="w-3.5 h-3.5" /> Cadeia de Comando Imperial
+        <div className="flex items-start sm:items-center gap-4">
+          <img
+            src="/assets/alcatrazz-crest.jpg"
+            alt="Logo Oficial ALCATRAZZ"
+            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
+          />
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-xs uppercase tracking-widest mb-2">
+              <Crown className="w-3.5 h-3.5" /> Cadeia de Comando Imperial
+            </div>
+            <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
+              HIERARQUIA OFICIAL DO CLÃ
+            </h2>
+            <p className="text-stone-400 mt-1.5 max-w-2xl text-xs sm:text-base">
+              A estrutura de autoridade da ALCATRAZZ é forjada em mérito, disciplina e
+              lealdade em campo de batalha. Cada patente detém insígnias e atribuições
+              exclusivas.
+            </p>
           </div>
-          <h2 className="font-medieval text-3xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
-            HIERARQUIA OFICIAL DO CLÃ
-          </h2>
-          <p className="text-stone-400 mt-2 max-w-2xl text-sm sm:text-base">
-            A estrutura de autoridade da ALCATRAZZ é forjada em mérito, disciplina e
-            lealdade em campo de batalha. Cada patente detém insígnias e atribuições
-            exclusivas.
-          </p>
         </div>
 
         {canManageRoles && (

@@ -382,13 +382,15 @@ export default function AlcatrazzOfficialPortal() {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#790D16] to-[#D66A19] border-2 border-[#D6A33A] flex items-center justify-center text-white shadow-gold-glow shrink-0">
-                <KeyRound className="w-6 h-6" />
-              </div>
+            <div className="flex items-center gap-3.5 mb-4">
+              <img
+                src="/assets/alcatrazz-crest.jpg"
+                alt="Logo Oficial ALCATRAZZ"
+                className="w-14 h-14 rounded-xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
+              />
               <div>
-                <span className="text-[11px] font-medieval uppercase tracking-widest text-[#D6A33A] block">
-                  Confirmação de Segurança
+                <span className="text-[11px] font-medieval uppercase tracking-widest text-[#e879f9] block">
+                  Confirmação de Segurança • ALCATRAZZ
                 </span>
                 <h3 className="font-medieval text-xl font-bold text-white">
                   {pendingAction.title}
@@ -595,59 +597,65 @@ export default function AlcatrazzOfficialPortal() {
       </header>
 
       {/* =====================================================================
-          3. PÁGINA INICIAL CINEMATOGRÁFICA
+          3. PÁGINA INICIAL CINEMATOGRÁFICA COM LOGO ORIGINAL E CORES ARCANAS
       ===================================================================== */}
       <section
         id="inicio"
-        className="relative min-h-[90vh] flex items-center justify-center overflow-hidden border-b border-[#D6A33A]/30"
+        className="relative min-h-[90vh] flex items-center justify-center overflow-hidden border-b border-[#a855f7]/35"
       >
-        {/* Imagem de Fundo Medieval com Castelo e Atmosfera Sombria */}
+        {/* Imagem de Fundo Medieval Combinada com a Logo Oficial do Clã */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-1000"
           style={{
             backgroundImage: `url('/assets/hero-castle.jpg')`,
           }}
         />
-        {/* Camadas de Iluminação Sombria, Vermelho Sangue e Dourado */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090909]/80 via-[#090909]/65 to-[#090909]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_15%,#090909_95%)]" />
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35 mix-blend-screen scale-105 pointer-events-none"
+          style={{
+            backgroundImage: `url('/assets/alcatrazz-crest.jpg')`,
+          }}
+        />
+        {/* Camadas de Iluminação Arcana Roxa, Lua de Sangue Carmesim e Ouro */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07050b]/80 via-[#150824]/70 to-[#07050b]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.22)_0%,rgba(136,13,30,0.25)_45%,#07050b_95%)]" />
 
-        {/* Partículas Discretas de Brasas / Fogo */}
+        {/* Partículas Discretas de Magia Arcana e Fogo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <span className="ember-particle absolute bottom-10 left-[15%] w-2 h-2 rounded-full bg-[#D66A19] blur-[1px]" />
+          <span className="ember-particle absolute bottom-10 left-[15%] w-2 h-2 rounded-full bg-[#d946ef] blur-[1px]" />
           <span
             className="ember-particle absolute bottom-16 left-[35%] w-1.5 h-1.5 rounded-full bg-[#D6A33A]"
             style={{ animationDelay: "1.5s" }}
           />
           <span
-            className="ember-particle absolute bottom-8 left-[65%] w-2.5 h-2.5 rounded-full bg-[#790D16]"
+            className="ember-particle absolute bottom-8 left-[65%] w-2.5 h-2.5 rounded-full bg-[#ef4444]"
             style={{ animationDelay: "2.8s" }}
           />
           <span
-            className="ember-particle absolute bottom-20 left-[82%] w-1.5 h-1.5 rounded-full bg-[#D66A19]"
+            className="ember-particle absolute bottom-20 left-[82%] w-1.5 h-1.5 rounded-full bg-[#a855f7]"
             style={{ animationDelay: "0.7s" }}
           />
         </div>
 
         {/* Conteúdo Central Hero */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
-          {/* Brasão Oficial Exclusivo do Clã ALCATRAZZ */}
-          <div className="relative mx-auto w-32 h-32 sm:w-44 sm:h-44 mb-5 sm:mb-6">
-            <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-[#790D16] via-[#D6A33A] to-[#D66A19] opacity-60 blur-xl animate-pulse" />
+          {/* Logo Original Oficial do Clã ALCATRAZZ em Destaque */}
+          <div className="relative mx-auto w-48 h-48 sm:w-64 sm:h-64 mb-6">
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-[#9333ea] via-[#dc2626] to-[#D6A33A] opacity-75 blur-2xl animate-pulse" />
             <img
               src="/assets/alcatrazz-crest.jpg"
-              alt="Brasão Oficial do Clã ALCATRAZZ"
-              className="relative w-full h-full rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow-strong"
+              alt="Logo Oficial do Clã ALCATRAZZ — Zephira World"
+              className="relative w-full h-full rounded-2xl object-cover border-2 border-[#D6A33A] shadow-[0_0_45px_rgba(168,85,247,0.65),0_0_25px_rgba(214,163,58,0.45)]"
             />
           </div>
 
           {/* Nome do Clã em Destaque */}
-          <h1 className="font-medieval text-4xl sm:text-7xl lg:text-8xl font-black tracking-[0.08em] sm:tracking-[0.12em] gold-text-gradient drop-shadow-[0_5px_25px_rgba(214,163,58,0.45)]">
+          <h1 className="font-medieval text-4xl sm:text-7xl lg:text-8xl font-black tracking-[0.08em] sm:tracking-[0.12em] gold-text-gradient drop-shadow-[0_5px_28px_rgba(168,85,247,0.6)]">
             ALCATRAZZ
           </h1>
 
           {/* Slogan Oficial */}
-          <p className="font-medieval text-xs sm:text-xl lg:text-2xl tracking-[0.14em] sm:tracking-[0.28em] text-[#D66A19] font-bold uppercase mt-3">
+          <p className="font-medieval text-xs sm:text-xl lg:text-2xl tracking-[0.14em] sm:tracking-[0.28em] text-[#e879f9] font-bold uppercase mt-3 drop-shadow-[0_2px_12px_rgba(217,70,239,0.5)]">
             &ldquo;ALCATRAZZ — HONRA, LEALDADE E PODER.&rdquo;
           </p>
 
@@ -730,12 +738,21 @@ export default function AlcatrazzOfficialPortal() {
           {/* Apresentação Institucional e História do Clã */}
           <div className="lg:col-span-7 medieval-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#790D16]/40 border border-[#D6A33A]/40 text-[#D6A33A] text-xs uppercase tracking-widest mb-4">
-                <Compass className="w-3.5 h-3.5" /> Tradição & Legado • ALCATRAZZ
+              <div className="flex items-center gap-4 mb-5">
+                <img
+                  src="/assets/alcatrazz-crest.jpg"
+                  alt="Logo Oficial ALCATRAZZ"
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
+                />
+                <div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-xs uppercase tracking-widest mb-1.5">
+                    <Compass className="w-3.5 h-3.5" /> Tradição & Legado • ALCATRAZZ
+                  </div>
+                  <h2 className="font-medieval text-2xl sm:text-3xl font-extrabold gold-text-gradient">
+                    A LENDA DA FORTALEZA ALCATRAZZ
+                  </h2>
+                </div>
               </div>
-              <h2 className="font-medieval text-2xl sm:text-3xl font-extrabold gold-text-gradient mb-4">
-                A LENDA DA FORTALEZA ALCATRAZZ
-              </h2>
               <div className="space-y-4 text-sm sm:text-base text-stone-300 leading-relaxed">
                 <p>
                   O clã <strong className="text-white">ALCATRAZZ</strong> nasceu da
@@ -747,7 +764,7 @@ export default function AlcatrazzOfficialPortal() {
                   Das planícies ancestrais de Ricarten e dos altares místicos de
                   Pillai até as areias escaldantes de Navisko, o nome ALCATRAZZ
                   tornou-se sinônimo de disciplina tática. Em{" "}
-                  <strong className="text-[#D66A19]">
+                  <strong className="text-[#e879f9]">
                     Siege of the Darkness (SoD)
                   </strong>
                   , nossos esquadrões operam com precisão cirúrgica para manter a
@@ -767,24 +784,24 @@ export default function AlcatrazzOfficialPortal() {
             </div>
 
             <div className="grid grid-cols-3 gap-3 mt-8 pt-6 border-t border-stone-800 text-center">
-              <div className="p-3 rounded-lg bg-black/50 border border-[#D6A33A]/20">
-                <div className="font-medieval text-xs uppercase text-[#D6A33A]">
+              <div className="p-3 rounded-lg bg-black/50 border border-[#a855f7]/30">
+                <div className="font-medieval text-xs uppercase text-[#e879f9]">
                   Pilar I
                 </div>
                 <div className="font-medieval font-bold text-base text-white mt-0.5">
                   HONRA
                 </div>
               </div>
-              <div className="p-3 rounded-lg bg-black/50 border border-[#D6A33A]/20">
-                <div className="font-medieval text-xs uppercase text-[#D66A19]">
+              <div className="p-3 rounded-lg bg-black/50 border border-[#D6A33A]/30">
+                <div className="font-medieval text-xs uppercase text-[#D6A33A]">
                   Pilar II
                 </div>
                 <div className="font-medieval font-bold text-base text-white mt-0.5">
                   LEALDADE
                 </div>
               </div>
-              <div className="p-3 rounded-lg bg-black/50 border border-[#D6A33A]/20">
-                <div className="font-medieval text-xs uppercase text-[#D6A33A]">
+              <div className="p-3 rounded-lg bg-black/50 border border-[#ef4444]/30">
+                <div className="font-medieval text-xs uppercase text-[#f87171]">
                   Pilar III
                 </div>
                 <div className="font-medieval font-bold text-base text-white mt-0.5">
@@ -796,13 +813,13 @@ export default function AlcatrazzOfficialPortal() {
 
           {/* Destaque Especial para o Líder */}
           {liderCla ? (
-            <div className="lg:col-span-5 medieval-card rounded-2xl p-6 sm:p-8 border-2 border-[#D6A33A] shadow-gold-glow flex flex-col justify-between bg-gradient-to-b from-[#790D16]/35 via-[#111010] to-[#090909]">
+            <div className="lg:col-span-5 medieval-card rounded-2xl p-6 sm:p-8 border-2 border-[#D6A33A] shadow-gold-glow flex flex-col justify-between bg-gradient-to-b from-[#581c87]/35 via-[#140c1f] to-[#07050b]">
               <div>
                 <div className="flex items-center justify-between mb-5">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#D6A33A] text-black font-medieval font-extrabold text-xs uppercase">
                     <Crown className="w-4 h-4" /> Comandante Supremo
                   </span>
-                  <span className="text-xs font-medieval text-[#D6A33A]">
+                  <span className="text-xs font-medieval text-[#e879f9]">
                     Destaque da Liderança
                   </span>
                 </div>
@@ -833,7 +850,7 @@ export default function AlcatrazzOfficialPortal() {
                   </div>
                 </div>
 
-                <blockquote className="p-4 rounded-xl bg-black/60 border-l-4 border-[#D6A33A] text-xs sm:text-sm text-stone-200 italic mb-5">
+                <blockquote className="p-4 rounded-xl bg-black/60 border-l-4 border-[#a855f7] text-xs sm:text-sm text-stone-200 italic mb-5">
                   &ldquo;Na ALCATRAZZ, nenhum guerreiro luta sozinho. Nossa força
                   em Bellatra e nas muralhas de Bless Castle vem da disciplina e
                   da irmandade do nosso clã.&rdquo;
@@ -856,11 +873,13 @@ export default function AlcatrazzOfficialPortal() {
               </div>
             </div>
           ) : (
-            <div className="lg:col-span-5 medieval-card rounded-2xl p-6 sm:p-8 border-2 border-dashed border-[#D6A33A]/40 flex flex-col justify-between text-center bg-black/50">
-              <div className="my-auto py-8">
-                <div className="w-16 h-16 rounded-2xl bg-[#790D16]/30 border border-[#D6A33A] flex items-center justify-center text-[#D6A33A] mx-auto mb-4 shadow-gold-glow">
-                  <Crown className="w-8 h-8" />
-                </div>
+            <div className="lg:col-span-5 medieval-card rounded-2xl p-6 sm:p-8 border-2 border-dashed border-[#a855f7]/50 flex flex-col justify-between text-center bg-gradient-to-b from-[#2e0b49]/35 to-[#07050b]">
+              <div className="my-auto py-4">
+                <img
+                  src="/assets/alcatrazz-crest.jpg"
+                  alt="Logo Oficial ALCATRAZZ"
+                  className="w-28 h-28 rounded-2xl object-cover border-2 border-[#D6A33A] mx-auto mb-4 shadow-gold-glow"
+                />
                 <h3 className="font-medieval text-xl font-bold text-stone-100 mb-2">
                   Comando Supremo ALCATRAZZ
                 </h3>
@@ -883,20 +902,29 @@ export default function AlcatrazzOfficialPortal() {
           {/* Próximos Eventos */}
           <div className="medieval-card rounded-2xl p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-medieval text-lg font-bold text-[#D6A33A] flex items-center gap-2">
-                <Flame className="w-5 h-5 text-[#D66A19]" /> Próximos Eventos &
-                SoD
+              <h3 className="font-medieval text-lg font-bold text-[#D6A33A] flex items-center gap-2.5">
+                <img
+                  src="/assets/alcatrazz-crest.jpg"
+                  alt="Logo ALCATRAZZ"
+                  className="w-7 h-7 rounded-lg object-cover border border-[#D6A33A]"
+                />
+                <span>Próximos Eventos & SoD</span>
               </h3>
               <button
                 onClick={() => scrollToSection("eventos")}
-                className="text-xs font-medieval uppercase text-[#D6A33A] hover:underline"
+                className="text-xs font-medieval uppercase text-[#e879f9] hover:underline"
               >
                 Ver Calendário Completo →
               </button>
             </div>
             <div className="space-y-3">
               {proximosEventos.length === 0 ? (
-                <div className="p-6 rounded-xl bg-black/50 border border-dashed border-stone-800 text-center">
+                <div className="p-6 rounded-xl bg-black/50 border border-dashed border-[#a855f7]/35 text-center">
+                  <img
+                    src="/assets/alcatrazz-crest.jpg"
+                    alt="Logo ALCATRAZZ"
+                    className="w-12 h-12 rounded-xl object-cover border border-[#D6A33A] mx-auto mb-2.5"
+                  />
                   <p className="text-xs text-stone-400 mb-3">
                     Nenhuma operação agendada no momento.
                   </p>
@@ -911,10 +939,10 @@ export default function AlcatrazzOfficialPortal() {
                 proximosEventos.map((ev) => (
                   <div
                     key={ev.id}
-                    className="p-3.5 rounded-xl bg-black/60 border border-stone-800 hover:border-[#D6A33A]/50 transition flex items-center justify-between gap-3"
+                    className="p-3.5 rounded-xl bg-black/60 border border-stone-800 hover:border-[#a855f7]/60 transition flex items-center justify-between gap-3"
                   >
                     <div>
-                      <span className="text-[10px] font-medieval uppercase px-2 py-0.5 rounded bg-[#790D16]/50 text-[#D6A33A]">
+                      <span className="text-[10px] font-medieval uppercase px-2 py-0.5 rounded bg-[#581c87]/50 text-[#e879f9]">
                         {ev.categoria}
                       </span>
                       <h4 className="font-medieval font-bold text-sm text-stone-100 mt-1">
@@ -942,19 +970,29 @@ export default function AlcatrazzOfficialPortal() {
           {/* Últimos Comunicados */}
           <div className="medieval-card rounded-2xl p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-medieval text-lg font-bold text-[#D6A33A] flex items-center gap-2">
-                <ScrollText className="w-5 h-5" /> Últimos Comunicados Oficiais
+              <h3 className="font-medieval text-lg font-bold text-[#D6A33A] flex items-center gap-2.5">
+                <img
+                  src="/assets/alcatrazz-crest.jpg"
+                  alt="Logo ALCATRAZZ"
+                  className="w-7 h-7 rounded-lg object-cover border border-[#D6A33A]"
+                />
+                <span>Últimos Comunicados Oficiais</span>
               </h3>
               <button
                 onClick={() => scrollToSection("mural")}
-                className="text-xs font-medieval uppercase text-[#D6A33A] hover:underline"
+                className="text-xs font-medieval uppercase text-[#e879f9] hover:underline"
               >
                 Abrir Mural →
               </button>
             </div>
             <div className="space-y-3">
               {ultimosComunicados.length === 0 ? (
-                <div className="p-6 rounded-xl bg-black/50 border border-dashed border-stone-800 text-center">
+                <div className="p-6 rounded-xl bg-black/50 border border-dashed border-[#a855f7]/35 text-center">
+                  <img
+                    src="/assets/alcatrazz-crest.jpg"
+                    alt="Logo ALCATRAZZ"
+                    className="w-12 h-12 rounded-xl object-cover border border-[#D6A33A] mx-auto mb-2.5"
+                  />
                   <p className="text-xs text-stone-400 mb-3">
                     Nenhum comunicado publicado no mural ainda.
                   </p>

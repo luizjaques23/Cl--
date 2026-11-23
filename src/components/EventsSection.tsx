@@ -145,19 +145,26 @@ export function EventsSection({
     >
       {/* Cabeçalho */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D66A19]/25 border border-[#D66A19]/60 text-[#D6A33A] text-xs uppercase tracking-widest mb-3">
-            <Flame className="w-3.5 h-3.5 text-[#D66A19]" /> Bellatra (SoD) & Bless
-            Castle
+        <div className="flex items-start sm:items-center gap-4">
+          <img
+            src="/assets/alcatrazz-crest.jpg"
+            alt="Logo Oficial ALCATRAZZ"
+            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
+          />
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-xs uppercase tracking-widest mb-2">
+              <Flame className="w-3.5 h-3.5 text-[#e879f9]" /> Bellatra (SoD) & Bless
+              Castle
+            </div>
+            <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
+              CALENDÁRIO DE EVENTOS & SoD
+            </h2>
+            <p className="text-stone-400 mt-1.5 max-w-2xl text-xs sm:text-base">
+              Programação estratégica para <strong className="text-[#D6A33A]">Siege of the Darkness (SoD)</strong>,
+              cercos de Bless Castle, incursões a Bosses e treinamentos táticos. Confirme
+              sua presença com antecedência.
+            </p>
           </div>
-          <h2 className="font-medieval text-3xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
-            CALENDÁRIO DE EVENTOS & SoD
-          </h2>
-          <p className="text-stone-400 mt-2 max-w-2xl text-sm sm:text-base">
-            Programação estratégica para <strong className="text-[#D6A33A]">Siege of the Darkness (SoD)</strong>,
-            cercos de Bless Castle, incursões a Bosses e treinamentos táticos. Confirme
-            sua presença com antecedência.
-          </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
@@ -298,8 +305,12 @@ export function EventsSection({
 
       {/* Cards de Eventos Detalhados */}
       {(viewMode === "semanal" ? weeklyEvents : filteredEvents).length === 0 ? (
-        <div className="medieval-card rounded-2xl p-12 text-center border-2 border-dashed border-[#D6A33A]/40">
-          <CalendarIcon className="w-14 h-14 text-[#D6A33A]/60 mx-auto mb-3" />
+        <div className="medieval-card rounded-2xl p-10 sm:p-12 text-center border-2 border-dashed border-[#a855f7]/45">
+          <img
+            src="/assets/alcatrazz-crest.jpg"
+            alt="Logo Oficial ALCATRAZZ"
+            className="w-24 h-24 rounded-2xl object-cover border-2 border-[#D6A33A] mx-auto mb-4 shadow-gold-glow"
+          />
           <h3 className="font-medieval text-2xl text-stone-100 font-bold mb-2">
             Nenhuma Operação Agendada no Momento
           </h3>

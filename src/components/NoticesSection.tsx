@@ -118,17 +118,24 @@ export function NoticesSection({
       className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#D6A33A]/15"
     >
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#790D16]/30 border border-[#D6A33A]/40 text-[#D6A33A] text-xs uppercase tracking-widest mb-3">
-            <ScrollText className="w-3.5 h-3.5" /> Decretos do Conselho
+        <div className="flex items-start sm:items-center gap-4">
+          <img
+            src="/assets/alcatrazz-crest.jpg"
+            alt="Logo Oficial ALCATRAZZ"
+            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
+          />
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-xs uppercase tracking-widest mb-2">
+              <ScrollText className="w-3.5 h-3.5" /> Decretos do Conselho
+            </div>
+            <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
+              MURAL DE AVISOS & COMUNICADOS
+            </h2>
+            <p className="text-stone-400 mt-1.5 max-w-2xl text-xs sm:text-base">
+              Acompanhe as convocações de guerra, regras do clã, editais de
+              recrutamento e decretos oficiais publicados pela liderança ALCATRAZZ.
+            </p>
           </div>
-          <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
-            MURAL DE AVISOS & COMUNICADOS
-          </h2>
-          <p className="text-stone-400 mt-2 max-w-2xl text-xs sm:text-base">
-            Acompanhe as convocações de guerra, regras do clã, editais de
-            recrutamento e decretos oficiais publicados pela liderança ALCATRAZZ.
-          </p>
         </div>
 
         {canManageNotices && (
@@ -172,8 +179,12 @@ export function NoticesSection({
 
       {/* Grid de Comunicados */}
       {filteredNotices.length === 0 ? (
-        <div className="medieval-card rounded-2xl p-12 text-center border-2 border-dashed border-[#D6A33A]/40">
-          <ScrollText className="w-14 h-14 text-[#D6A33A]/60 mx-auto mb-3" />
+        <div className="medieval-card rounded-2xl p-10 sm:p-12 text-center border-2 border-dashed border-[#a855f7]/45">
+          <img
+            src="/assets/alcatrazz-crest.jpg"
+            alt="Logo Oficial ALCATRAZZ"
+            className="w-24 h-24 rounded-2xl object-cover border-2 border-[#D6A33A] mx-auto mb-4 shadow-gold-glow"
+          />
           <h3 className="font-medieval text-2xl text-stone-100 font-bold mb-2">
             Nenhum Comunicado no Mural no Momento
           </h3>
