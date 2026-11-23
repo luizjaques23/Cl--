@@ -480,30 +480,30 @@ export default function AlcatrazzOfficialPortal() {
       )}
 
       {/* BARRA DE NAVEGAÇÃO MEDIEVAL FIXA */}
-      <header className="sticky top-0 z-40 bg-[#090909]/92 backdrop-blur-md border-b border-[#D6A33A]/35 shadow-lg">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
-          {/* Logo + Identificação */}
+      <header className="sticky top-0 z-40 bg-[#07050b]/95 backdrop-blur-md border-b border-[#a855f7]/35 shadow-lg">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-3">
+          {/* Logo + Identificação (Nunca Corta) */}
           <a
             href="#inicio"
-            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none min-w-0"
+            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none shrink-0"
           >
             <img
               src="/assets/alcatrazz-crest.jpg"
-              alt="Brasão Oficial ALCATRAZZ"
+              alt="Logo Oficial ALCATRAZZ"
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover border-2 border-[#D6A33A] shadow-gold-glow group-hover:scale-105 transition shrink-0"
             />
-            <div className="min-w-0">
-              <div className="font-medieval text-lg sm:text-2xl font-black tracking-widest gold-text-gradient leading-none truncate">
+            <div className="shrink-0">
+              <div className="font-medieval text-lg sm:text-xl 2xl:text-2xl font-black tracking-wider sm:tracking-widest gold-text-gradient leading-none whitespace-nowrap">
                 ALCATRAZZ
               </div>
-              <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#D66A19] font-semibold mt-0.5 sm:mt-1 truncate">
+              <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.14em] sm:tracking-[0.18em] text-[#e879f9] font-semibold mt-1 whitespace-nowrap">
                 Priston Tale • Portal Oficial
               </div>
             </div>
           </a>
 
           {/* Links Desktop */}
-          <nav className="hidden xl:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-0.5 2xl:gap-1 shrink-0">
             {[
               { label: "Início", href: "inicio" },
               { label: "História", href: "historia" },
@@ -516,7 +516,7 @@ export default function AlcatrazzOfficialPortal() {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="px-3 py-2 rounded-lg text-xs font-medieval uppercase tracking-wider text-stone-300 hover:text-[#D6A33A] hover:bg-[#790D16]/20 transition"
+                className="px-2.5 2xl:px-3 py-2 rounded-lg text-[11px] 2xl:text-xs font-medieval uppercase tracking-wider text-stone-200 hover:text-[#D6A33A] hover:bg-[#581c87]/30 transition whitespace-nowrap"
               >
                 {item.label}
               </button>
@@ -524,35 +524,34 @@ export default function AlcatrazzOfficialPortal() {
           </nav>
 
           {/* Ações Rápidas à Direita + Som + Menu Mobile */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <MedievalAudioControl variant="header" />
 
-            <div className="hidden sm:flex items-center gap-2">
+            <div className="hidden md:flex items-center gap-2 shrink-0">
               {pwaInstallPrompt && (
                 <button
                   onClick={() => {
                     pwaInstallPrompt.prompt();
                     setPwaInstallPrompt(null);
                   }}
-                  className="px-3 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 border border-[#D6A33A]/40 text-[#D6A33A] text-xs font-medieval uppercase flex items-center gap-1.5 min-h-[40px]"
+                  className="px-2.5 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 border border-[#a855f7]/40 text-[#D6A33A] text-[11px] font-medieval uppercase flex items-center gap-1.5 min-h-[38px] whitespace-nowrap"
                 >
-                  <Download className="w-3.5 h-3.5" /> Instalar App
+                  <Download className="w-3.5 h-3.5 shrink-0" /> App
                 </button>
               )}
 
               <button
                 onClick={() => scrollToSection("membros")}
-                className="btn-blood-crimson px-3.5 py-2 rounded-lg text-xs font-medieval uppercase tracking-wider flex items-center gap-1.5 min-h-[40px]"
+                className="btn-blood-crimson px-3 py-2 rounded-lg text-[11px] font-medieval uppercase tracking-wider flex items-center gap-1.5 min-h-[38px] whitespace-nowrap"
               >
-                <UserPlus className="w-3.5 h-3.5 text-[#D6A33A]" /> + Cadastrar
-                Membro
+                <UserPlus className="w-3.5 h-3.5 text-[#D6A33A] shrink-0" /> + Membro
               </button>
 
               <button
                 onClick={() => scrollToSection("ranking")}
-                className="btn-royal-gold px-4 py-2 rounded-lg text-xs font-medieval uppercase tracking-wider flex items-center gap-1.5 min-h-[40px]"
+                className="btn-royal-gold px-3.5 py-2 rounded-lg text-[11px] font-medieval uppercase tracking-wider flex items-center gap-1.5 min-h-[38px] whitespace-nowrap"
               >
-                <Trophy className="w-3.5 h-3.5" /> Ranking & Pontos
+                <Trophy className="w-3.5 h-3.5 shrink-0" /> Ranking
               </button>
             </div>
 
