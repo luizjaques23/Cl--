@@ -54,11 +54,10 @@ export function MedievalAudioControl({
         onClick={handleToggle}
         title={audioState.muted ? "Ativar Som Medieval" : "Silenciar Som Medieval"}
         aria-label={audioState.muted ? "Ativar Som Medieval" : "Silenciar Som Medieval"}
-        className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border text-xs font-medieval uppercase tracking-wider transition min-h-[40px] ${
-          audioState.muted
+        className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border text-xs font-medieval uppercase tracking-wider transition min-h-[40px] ${audioState.muted
             ? "bg-stone-900/90 border-stone-700 text-stone-400 hover:text-stone-200 hover:border-stone-500"
             : "bg-[#581c87]/40 border-[#a855f7]/60 text-[#D6A33A] hover:bg-[#581c87]/70 shadow-gold-glow"
-        }`}
+          }`}
       >
         {audioState.muted ? (
           <VolumeX className="w-4 h-4 text-rose-400 shrink-0" />
@@ -77,11 +76,10 @@ export function MedievalAudioControl({
       type="button"
       onClick={handleToggle}
       aria-label={audioState.muted ? "Ativar Som Medieval" : "Silenciar Som Medieval"}
-      className={`fixed bottom-4 left-4 z-[90] flex items-center gap-2.5 px-3 py-2 rounded-full border backdrop-blur-md shadow-2xl transition-all duration-300 min-h-[44px] ${
-        audioState.muted
+      className={`fixed bottom-4 left-4 z-[90] flex items-center gap-2.5 px-3 py-2 rounded-full border backdrop-blur-md shadow-2xl transition-all duration-300 min-h-[44px] ${audioState.muted
           ? "bg-[#0d0814]/90 border-stone-700/80 text-stone-400 hover:border-[#a855f7]/60 hover:text-stone-200"
           : "bg-gradient-to-r from-[#280936]/95 via-[#3d0a1d]/95 to-[#160b24]/95 border-[#a855f7]/75 text-[#D6A33A] shadow-gold-glow hover:scale-105"
-      }`}
+        }`}
     >
       <img
         src="/assets/alcatrazz-crest.jpg"
