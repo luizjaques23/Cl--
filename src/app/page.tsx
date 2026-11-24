@@ -91,8 +91,9 @@ export default function AlcatrazzOfficialPortal() {
     message: string;
   } | null>(null);
   const [pwaInstallPrompt, setPwaInstallPrompt] = useState<any>(null);
+  const [showPwaGuideModal, setShowPwaGuideModal] = useState(false);
 
-  // Estado do Modal de Senha de Confirmação (232356)
+  // Estado do Modal de Senha de Confirmação do Líder
   const [pendingAction, setPendingAction] =
     useState<PendingConfirmationAction | null>(null);
   const [confirmationPassword, setConfirmationPassword] = useState("");
@@ -237,7 +238,17 @@ export default function AlcatrazzOfficialPortal() {
     };
   }, [fetchPortalData, fetchAuthStatus]);
 
-  // Executa ações públicas ou solicita a Senha de Confirmação (232356)
+  const handleInstallPwa = async () => {
+    setMobileMenuOpen(false);
+    if (pwaInstallPrompt) {
+      pwaInstallPrompt.prompt();
+      setPwaInstallPrompt(null);
+    } else {
+      setShowPwaGuideModal(true);
+    }
+  };
+
+  // Executa ações públicas ou solicita a Senha de Confirmação do Líder
   const executeServerAction = (
     action: string,
     payload: unknown,
@@ -370,7 +381,71 @@ export default function AlcatrazzOfficialPortal() {
       <MedievalAudioControl variant="floating" />
 
       {/* =====================================================================
-          MODAL GLOBAL DE SENHA DE CONFIRMAÇÃO DO LÍDER (232356)
+          MODAL DE INSTALAÇÃO DO APLICATIVO NO CELULAR (PWA ANDROID & IPHONE)
+      ===================================================================== */}
+      {showPwaGuideModal && (
+        <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/85 backdrop-blur-md p-4 overflow-y-auto">
+          <div className="medieval-card rounded-2xl max-w-md w-full max-h-[92vh] overflow-y-auto p-5 sm:p-7 relative border-2 border-[#a855f7] shadow-gold-glow-strong my-4">
+            <button
+              onClick={() => setShowPwaGuideModal(false)}
+              className="absolute top-4 right-4 text-stone-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-3.5 mb-4">
+              <img
+                src="/assets/alcatrazz-crest.jpg"
+                alt="Logo Oficial ALCATRAZZ"
+                className="w-14 h-14 rounded-xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
+              />
+              <div>
+                <span className="text-[11px] font-medieval uppercase tracking-widest text-[#e879f9] block">
+                  Aplicativo Oficial PWA
+                </span>
+                <h3 className="font-medieval text-lg sm:text-xl font-bold text-white">
+                  Instalar ALCATRAZZ no Celular
+                </h3>
+              </div>
+            </div>
+
+            <p className="text-xs sm:text-sm text-stone-300 mb-4 leading-relaxed">
+              Adicione o portal oficial do clã <strong className="text-[#D6A33A]">ALCATRAZZ</strong> diretamente na tela inicial do seu celular para abrir em tela cheia como aplicativo:
+            </p>
+
+            <div className="space-y-3 text-xs text-stone-200 mb-5">
+              <div className="p-3.5 rounded-xl bg-black/60 border border-[#a855f7]/40">
+                <strong className="font-medieval text-[#e879f9] uppercase block mb-1">
+                  📱 No Android (Chrome / Samsung / Edge):
+                </strong>
+                <p className="text-stone-300 leading-relaxed">
+                  Toque nos <strong className="text-white">3 pontinhos (⋮)</strong> no canto do navegador e selecione <strong className="text-[#D6A33A]">&ldquo;Instalar aplicativo&rdquo;</strong> ou <strong className="text-[#D6A33A]">&ldquo;Adicionar à tela inicial&rdquo;</strong>.
+                </p>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-black/60 border border-[#D6A33A]/40">
+                <strong className="font-medieval text-[#D6A33A] uppercase block mb-1">
+                  🍎 No iPhone / iOS (Safari):
+                </strong>
+                <p className="text-stone-300 leading-relaxed">
+                  Toque no botão <strong className="text-white">Compartilhar</strong> na barra inferior do Safari e escolha <strong className="text-[#D6A33A]">&ldquo;Adicionar à Tela de Início&rdquo;</strong>.
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setShowPwaGuideModal(false)}
+              className="btn-royal-gold w-full py-2.5 rounded-xl text-xs font-medieval uppercase tracking-wider"
+            >
+              Entendi
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* =====================================================================
+          MODAL GLOBAL DE SENHA DE CONFIRMAÇÃO DO LÍDER
       ===================================================================== */}
       {pendingAction && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/85 backdrop-blur-md p-4 overflow-y-auto">
@@ -528,17 +603,12 @@ export default function AlcatrazzOfficialPortal() {
             <MedievalAudioControl variant="header" />
 
             <div className="hidden md:flex items-center gap-2 shrink-0">
-              {pwaInstallPrompt && (
-                <button
-                  onClick={() => {
-                    pwaInstallPrompt.prompt();
-                    setPwaInstallPrompt(null);
-                  }}
-                  className="px-2.5 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 border border-[#a855f7]/40 text-[#D6A33A] text-[11px] font-medieval uppercase flex items-center gap-1.5 min-h-[38px] whitespace-nowrap"
-                >
-                  <Download className="w-3.5 h-3.5 shrink-0" /> App
-                </button>
-              )}
+              <button
+                onClick={handleInstallPwa}
+                className="px-2.5 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 border border-[#a855f7]/40 text-[#D6A33A] text-[11px] font-medieval uppercase flex items-center gap-1.5 min-h-[38px] whitespace-nowrap"
+              >
+                <Download className="w-3.5 h-3.5 shrink-0" /> Instalar App
+              </button>
 
               <button
                 onClick={() => scrollToSection("membros")}
@@ -572,7 +642,7 @@ export default function AlcatrazzOfficialPortal() {
 
         {/* Drawer Mobile */}
         {mobileMenuOpen && (
-          <div className="xl:hidden bg-[#0c0a0a] border-b-2 border-[#D6A33A]/50 px-4 pt-3 pb-6 space-y-2">
+          <div className="xl:hidden bg-[#0b0713] border-b-2 border-[#a855f7]/50 px-4 pt-3 pb-6 space-y-2">
             {[
               { label: "Início", href: "inicio" },
               { label: "História & Tradição", href: "historia" },
@@ -585,12 +655,21 @@ export default function AlcatrazzOfficialPortal() {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medieval uppercase tracking-wider text-stone-200 hover:bg-[#790D16]/30 hover:text-[#D6A33A] flex items-center justify-between"
+                className="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medieval uppercase tracking-wider text-stone-200 hover:bg-[#581c87]/35 hover:text-[#D6A33A] flex items-center justify-between"
               >
                 <span>{item.label}</span>
                 <ChevronRight className="w-4 h-4 text-[#D6A33A]" />
               </button>
             ))}
+
+            <div className="pt-2 border-t border-stone-800/80">
+              <button
+                onClick={handleInstallPwa}
+                className="w-full btn-royal-gold px-4 py-3 rounded-xl text-xs font-medieval uppercase tracking-wider flex items-center justify-center gap-2 min-h-[44px]"
+              >
+                <Download className="w-4 h-4 shrink-0" /> Instalar Aplicativo no Celular (PWA)
+              </button>
+            </div>
           </div>
         )}
       </header>
@@ -669,56 +748,61 @@ export default function AlcatrazzOfficialPortal() {
           </p>
 
           {/* Botões de Ação Principal */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 mt-8 w-full max-w-xl mx-auto">
             <button
               onClick={() => scrollToSection("ranking")}
-              className="btn-royal-gold px-7 py-3.5 rounded-xl font-medieval text-sm uppercase tracking-widest flex items-center gap-2"
+              className="btn-royal-gold w-full sm:w-auto justify-center px-6 py-3.5 rounded-xl font-medieval text-xs sm:text-sm uppercase tracking-widest flex items-center gap-2 min-h-[46px]"
             >
-              <Trophy className="w-4 h-4" /> Ver & Editar Ranking
+              <Trophy className="w-4 h-4 shrink-0" /> Ver & Editar Ranking
             </button>
             <button
               onClick={() => scrollToSection("membros")}
-              className="btn-blood-crimson px-7 py-3.5 rounded-xl font-medieval text-sm uppercase tracking-widest flex items-center gap-2"
+              className="btn-blood-crimson w-full sm:w-auto justify-center px-6 py-3.5 rounded-xl font-medieval text-xs sm:text-sm uppercase tracking-widest flex items-center gap-2 min-h-[46px]"
             >
-              <Swords className="w-4 h-4 text-[#D6A33A]" /> Cadastrar / Gerenciar
-              Membros ({portalState.jogadores.length})
+              <Swords className="w-4 h-4 text-[#D6A33A] shrink-0" /> Membros ({portalState.jogadores.length})
+            </button>
+            <button
+              onClick={handleInstallPwa}
+              className="sm:hidden w-full justify-center px-5 py-3 rounded-xl bg-black/80 border border-[#a855f7]/60 text-[#D6A33A] font-medieval text-xs uppercase tracking-widest flex items-center gap-2 min-h-[44px]"
+            >
+              <Download className="w-4 h-4 text-[#e879f9] shrink-0" /> Instalar App (PWA)
             </button>
           </div>
 
           {/* Indicadores Rápidos na Hero */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-14">
-            <div className="medieval-card rounded-xl p-4 bg-black/80">
-              <div className="font-medieval text-2xl sm:text-3xl font-extrabold text-[#D6A33A]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto mt-10 sm:mt-14">
+            <div className="medieval-card rounded-xl p-3.5 sm:p-4 bg-black/80">
+              <div className="font-medieval text-xl sm:text-3xl font-extrabold text-[#D6A33A]">
                 {portalState.jogadores.length}
               </div>
-              <div className="text-xs uppercase tracking-wider text-stone-400 mt-1">
+              <div className="text-[10px] sm:text-xs uppercase tracking-wider text-stone-400 mt-1">
                 Integrantes Cadastrados
               </div>
             </div>
-            <div className="medieval-card rounded-xl p-4 bg-black/80">
-              <div className="font-medieval text-2xl sm:text-3xl font-extrabold text-[#D66A19]">
+            <div className="medieval-card rounded-xl p-3.5 sm:p-4 bg-black/80">
+              <div className="font-medieval text-xl sm:text-3xl font-extrabold text-[#e879f9]">
                 {portalState.cargos.length}
               </div>
-              <div className="text-xs uppercase tracking-wider text-stone-400 mt-1">
+              <div className="text-[10px] sm:text-xs uppercase tracking-wider text-stone-400 mt-1">
                 Patentes da Hierarquia
               </div>
             </div>
-            <div className="medieval-card rounded-xl p-4 bg-black/80">
-              <div className="font-medieval text-2xl sm:text-3xl font-extrabold text-stone-100">
+            <div className="medieval-card rounded-xl p-3.5 sm:p-4 bg-black/80">
+              <div className="font-medieval text-xl sm:text-3xl font-extrabold text-stone-100">
                 {
                   portalState.eventos.filter((e) => e.status !== "concluido")
                     .length
                 }
               </div>
-              <div className="text-xs uppercase tracking-wider text-stone-400 mt-1">
+              <div className="text-[10px] sm:text-xs uppercase tracking-wider text-stone-400 mt-1">
                 Próximas Operações / SoD
               </div>
             </div>
-            <div className="medieval-card rounded-xl p-4 bg-black/80">
-              <div className="font-medieval text-2xl sm:text-3xl font-extrabold text-[#D6A33A]">
+            <div className="medieval-card rounded-xl p-3.5 sm:p-4 bg-black/80">
+              <div className="font-medieval text-xl sm:text-3xl font-extrabold text-[#D6A33A]">
                 ATIVO
               </div>
-              <div className="text-xs uppercase tracking-wider text-stone-400 mt-1">
+              <div className="text-[10px] sm:text-xs uppercase tracking-wider text-stone-400 mt-1">
                 Salvamento Automático
               </div>
             </div>
@@ -883,7 +967,7 @@ export default function AlcatrazzOfficialPortal() {
                   Comando Supremo ALCATRAZZ
                 </h3>
                 <p className="text-xs text-stone-400 max-w-sm mx-auto mb-6 leading-relaxed">
-                  O posto de Líder Supremo está aguardando o primeiro cadastro. O Líder pode registrar os dados no Ranking ou no Sistema de Membros utilizando a senha de confirmação (232356).
+                  O posto de Líder Supremo está aguardando o primeiro cadastro. A liderança pode registrar os dados no Ranking ou no Sistema de Membros.
                 </p>
                 <button
                   onClick={() => scrollToSection("ranking")}

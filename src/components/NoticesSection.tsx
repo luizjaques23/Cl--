@@ -117,21 +117,21 @@ export function NoticesSection({
       id="mural"
       className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#D6A33A]/15"
     >
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-        <div className="flex items-start sm:items-center gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-5">
+        <div className="flex items-start sm:items-center gap-3.5 sm:gap-4 min-w-0">
           <img
             src="/assets/alcatrazz-crest.jpg"
             alt="Logo Oficial ALCATRAZZ"
-            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
+            className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
           />
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-xs uppercase tracking-widest mb-2">
-              <ScrollText className="w-3.5 h-3.5" /> Decretos do Conselho
+          <div className="min-w-0">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-[10px] sm:text-xs uppercase tracking-widest mb-2">
+              <ScrollText className="w-3.5 h-3.5 shrink-0" /> Decretos do Conselho
             </div>
-            <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
+            <h2 className="font-medieval text-xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide leading-tight break-words">
               MURAL DE AVISOS & COMUNICADOS
             </h2>
-            <p className="text-stone-400 mt-1.5 max-w-2xl text-xs sm:text-base">
+            <p className="text-stone-400 mt-1.5 max-w-2xl text-xs sm:text-base leading-relaxed">
               Acompanhe as convocações de guerra, regras do clã, editais de
               recrutamento e decretos oficiais publicados pela liderança ALCATRAZZ.
             </p>
@@ -165,11 +165,10 @@ export function NoticesSection({
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-2 rounded-lg text-xs font-medieval uppercase tracking-wider transition border ${
-                active
+              className={`px-3.5 py-2 rounded-lg text-xs font-medieval uppercase tracking-wider transition border ${active
                   ? "bg-gradient-to-r from-[#790D16] to-[#a1131f] text-[#D6A33A] border-[#D6A33A] shadow-gold-glow"
                   : "bg-[#121010] text-stone-400 border-stone-800 hover:border-[#D6A33A]/40 hover:text-stone-200"
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -185,11 +184,11 @@ export function NoticesSection({
             alt="Logo Oficial ALCATRAZZ"
             className="w-24 h-24 rounded-2xl object-cover border-2 border-[#D6A33A] mx-auto mb-4 shadow-gold-glow"
           />
-          <h3 className="font-medieval text-2xl text-stone-100 font-bold mb-2">
+          <h3 className="font-medieval text-xl sm:text-2xl text-stone-100 font-bold mb-2">
             Nenhum Comunicado no Mural no Momento
           </h3>
-          <p className="text-stone-400 text-sm max-w-md mx-auto mb-6">
-            O conselho do clã ainda não publicou decretos ou avisos. O Líder pode publicar novas mensagens oficiais e salvar com a senha de confirmação (232356).
+          <p className="text-stone-400 text-xs sm:text-sm max-w-md mx-auto mb-6">
+            O conselho do clã ainda não publicou decretos ou avisos. A liderança pode publicar novas mensagens oficiais pelo botão abaixo.
           </p>
           <button
             onClick={() =>
@@ -212,11 +211,10 @@ export function NoticesSection({
           {filteredNotices.map((aviso) => (
             <article
               key={aviso.id}
-              className={`medieval-card rounded-xl overflow-hidden flex flex-col justify-between ${
-                aviso.fixado
+              className={`medieval-card rounded-xl overflow-hidden flex flex-col justify-between ${aviso.fixado
                   ? "border-2 border-[#D6A33A] shadow-gold-glow"
                   : ""
-              }`}
+                }`}
             >
               <div>
                 {aviso.imagem_url && (
@@ -276,11 +274,10 @@ export function NoticesSection({
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => onTogglePinNotice(aviso.id)}
-                      className={`p-1.5 rounded border transition ${
-                        aviso.fixado
+                      className={`p-1.5 rounded border transition ${aviso.fixado
                           ? "bg-[#D6A33A] text-black border-[#D6A33A]"
                           : "bg-stone-900 text-stone-300 border-stone-700 hover:border-[#D6A33A]"
-                      }`}
+                        }`}
                       title={aviso.fixado ? "Desafixar" : "Fixar no Topo"}
                     >
                       <Pin className="w-3.5 h-3.5" />

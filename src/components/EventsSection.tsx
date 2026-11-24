@@ -144,22 +144,22 @@ export function EventsSection({
       className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#D6A33A]/15"
     >
       {/* Cabeçalho */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-        <div className="flex items-start sm:items-center gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-5">
+        <div className="flex items-start sm:items-center gap-3.5 sm:gap-4 min-w-0">
           <img
             src="/assets/alcatrazz-crest.jpg"
             alt="Logo Oficial ALCATRAZZ"
-            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
+            className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
           />
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-xs uppercase tracking-widest mb-2">
-              <Flame className="w-3.5 h-3.5 text-[#e879f9]" /> Bellatra (SoD) & Bless
+          <div className="min-w-0">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-[10px] sm:text-xs uppercase tracking-widest mb-2">
+              <Flame className="w-3.5 h-3.5 text-[#e879f9] shrink-0" /> Bellatra (SoD) & Bless
               Castle
             </div>
-            <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
+            <h2 className="font-medieval text-xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide leading-tight break-words">
               CALENDÁRIO DE EVENTOS & SoD
             </h2>
-            <p className="text-stone-400 mt-1.5 max-w-2xl text-xs sm:text-base">
+            <p className="text-stone-400 mt-1.5 max-w-2xl text-xs sm:text-base leading-relaxed">
               Programação estratégica para <strong className="text-[#D6A33A]">Siege of the Darkness (SoD)</strong>,
               cercos de Bless Castle, incursões a Bosses e treinamentos táticos. Confirme
               sua presença com antecedência.
@@ -193,34 +193,34 @@ export function EventsSection({
       </div>
 
       {/* Controles de Visualização (Mensal, Semanal, Anteriores) e Categorias */}
-      <div className="medieval-card rounded-xl p-4 sm:p-5 mb-8 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="medieval-card rounded-xl p-3.5 sm:p-5 mb-8 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div className="grid grid-cols-1 sm:flex sm:flex-wrap items-center gap-2 w-full lg:w-auto">
           <button
             onClick={() => setViewMode("mensal")}
-            className={`px-4 py-2 rounded-lg text-xs font-medieval uppercase flex items-center gap-1.5 border transition ${viewMode === "mensal"
+            className={`px-4 py-2.5 sm:py-2 rounded-lg text-xs font-medieval uppercase flex items-center justify-center gap-1.5 border transition ${viewMode === "mensal"
                 ? "bg-[#D6A33A] text-black font-bold border-[#D6A33A]"
                 : "bg-black/60 text-stone-300 border-stone-800 hover:border-[#D6A33A]/50"
               }`}
           >
-            <LayoutGrid className="w-3.5 h-3.5" /> Visão Mensal
+            <LayoutGrid className="w-3.5 h-3.5 shrink-0" /> Visão Mensal
           </button>
           <button
             onClick={() => setViewMode("semanal")}
-            className={`px-4 py-2 rounded-lg text-xs font-medieval uppercase flex items-center gap-1.5 border transition ${viewMode === "semanal"
+            className={`px-4 py-2.5 sm:py-2 rounded-lg text-xs font-medieval uppercase flex items-center justify-center gap-1.5 border transition ${viewMode === "semanal"
                 ? "bg-[#D6A33A] text-black font-bold border-[#D6A33A]"
                 : "bg-black/60 text-stone-300 border-stone-800 hover:border-[#D6A33A]/50"
               }`}
           >
-            <ListFilter className="w-3.5 h-3.5" /> Próximos / Semanal
+            <ListFilter className="w-3.5 h-3.5 shrink-0" /> Próximos / Semanal
           </button>
           <button
             onClick={() => setViewMode("anteriores")}
-            className={`px-4 py-2 rounded-lg text-xs font-medieval uppercase flex items-center gap-1.5 border transition ${viewMode === "anteriores"
+            className={`px-4 py-2.5 sm:py-2 rounded-lg text-xs font-medieval uppercase flex items-center justify-center gap-1.5 border transition ${viewMode === "anteriores"
                 ? "bg-[#D6A33A] text-black font-bold border-[#D6A33A]"
                 : "bg-black/60 text-stone-300 border-stone-800 hover:border-[#D6A33A]/50"
               }`}
           >
-            <History className="w-3.5 h-3.5" /> Eventos Anteriores
+            <History className="w-3.5 h-3.5 shrink-0" /> Eventos Anteriores
           </button>
         </div>
 
@@ -249,9 +249,9 @@ export function EventsSection({
       {/* Grade de Calendário Mensal Compacta (quando em modo Mensal) */}
       {viewMode === "mensal" && (
         <div className="medieval-card rounded-xl p-4 sm:p-6 mb-10">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-medieval text-lg font-bold text-[#D6A33A] flex items-center gap-2">
-              <CalendarIcon className="w-5 h-5" /> Mapa Tático Mensal — Novembro 2026
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <h3 className="font-medieval text-base sm:text-lg font-bold text-[#D6A33A] flex items-center gap-2">
+              <CalendarIcon className="w-5 h-5 shrink-0" /> Mapa Tático Mensal — Novembro 2026
             </h3>
             <span className="text-xs text-stone-400">
               Dias marcados com chama possuem operações agendadas
@@ -311,11 +311,11 @@ export function EventsSection({
             alt="Logo Oficial ALCATRAZZ"
             className="w-24 h-24 rounded-2xl object-cover border-2 border-[#D6A33A] mx-auto mb-4 shadow-gold-glow"
           />
-          <h3 className="font-medieval text-2xl text-stone-100 font-bold mb-2">
+          <h3 className="font-medieval text-xl sm:text-2xl text-stone-100 font-bold mb-2">
             Nenhuma Operação Agendada no Momento
           </h3>
-          <p className="text-stone-400 text-sm max-w-md mx-auto mb-6">
-            O calendário tático de Bellatra (SoD) e Bless Castle aguarda agendamentos. O Líder pode criar eventos e salvar diretamente com a senha de confirmação (232356).
+          <p className="text-stone-400 text-xs sm:text-sm max-w-md mx-auto mb-6">
+            O calendário tático de Bellatra (SoD) e Bless Castle aguarda agendamentos. A liderança pode agendar novas operações diretamente pelo botão abaixo.
           </p>
           <button
             onClick={() =>

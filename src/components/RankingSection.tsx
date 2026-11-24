@@ -160,23 +160,23 @@ export function RankingSection({
     >
       {/* Cabeçalho */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-5">
-        <div className="flex items-start sm:items-center gap-4 min-w-0">
+        <div className="flex items-start sm:items-center gap-3.5 sm:gap-4 min-w-0">
           <img
             src="/assets/alcatrazz-crest.jpg"
             alt="Logo Oficial ALCATRAZZ"
-            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
+            className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
           />
           <div className="min-w-0">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-[10px] sm:text-xs uppercase tracking-widest mb-2">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-[10px] sm:text-xs uppercase tracking-widest mb-2">
               <Trophy className="w-3.5 h-3.5 shrink-0" /> Panteão de Glória • Tempo Real
             </div>
-            <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide leading-tight">
+            <h2 className="font-medieval text-xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide leading-tight break-words">
               RANKING OFICIAL DOS JOGADORES
             </h2>
             <p className="text-stone-400 mt-1.5 max-w-2xl text-xs sm:text-base leading-relaxed">
               Cadastre guerreiros, insira novas pontuações e atualize a
               classificação diretamente pelo site. Todas as alterações confirmadas
-              com a senha do Líder ficam salvas para todos os dispositivos.
+              pela liderança ficam salvas para todos os dispositivos.
             </p>
           </div>
         </div>
@@ -236,11 +236,11 @@ export function RankingSection({
             alt="Logo Oficial ALCATRAZZ"
             className="w-24 h-24 rounded-2xl object-cover border-2 border-[#D6A33A] mx-auto mb-4 shadow-gold-glow"
           />
-          <h3 className="font-medieval text-2xl font-bold gold-text-gradient mb-2">
+          <h3 className="font-medieval text-xl sm:text-2xl font-bold gold-text-gradient mb-2">
             O Panteão ALCATRAZZ Aguarda Seus Primeiros Conquistadores
           </h3>
-          <p className="text-stone-400 text-sm max-w-xl mx-auto mb-6">
-            Nenhum guerreiro registrado no ranking no momento. O Líder pode cadastrar novos guerreiros e definir pontuações diretamente pelo botão abaixo usando a senha de confirmação (232356).
+          <p className="text-stone-400 text-xs sm:text-sm max-w-xl mx-auto mb-6">
+            Nenhum guerreiro registrado no ranking no momento. A liderança pode cadastrar novos guerreiros e definir pontuações diretamente pelo botão abaixo.
           </p>
           <button
             onClick={() =>
@@ -508,33 +508,33 @@ export function RankingSection({
                 </div>
 
                 {/* Linha do Meio: Cargo + Level + Eventos + Contribuição */}
-                <div className="grid grid-cols-4 gap-2 pt-2.5 border-t border-stone-800/80 items-center text-center">
-                  <div className="text-left">
-                    <RoleBadge cargo={cargo} size="sm" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] text-stone-500 block">
-                      Level
-                    </span>
-                    <strong className="font-medieval text-xs text-stone-200">
-                      Lv.{player.level}
-                    </strong>
-                  </div>
-                  <div>
-                    <span className="text-[10px] text-stone-500 block">
-                      Eventos
-                    </span>
-                    <strong className="font-medieval text-xs text-stone-200">
-                      {player.participacoes_eventos}
-                    </strong>
-                  </div>
-                  <div>
-                    <span className="text-[10px] text-stone-500 block">
-                      Contrib.
-                    </span>
-                    <strong className="font-medieval text-xs text-[#D66A19]">
-                      {player.contribuicao_cla}
-                    </strong>
+                <div className="flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-stone-800/80">
+                  <RoleBadge cargo={cargo} size="sm" />
+                  <div className="flex items-center gap-3 text-center">
+                    <div>
+                      <span className="text-[10px] text-stone-500 block">
+                        Level
+                      </span>
+                      <strong className="font-medieval text-xs text-stone-200">
+                        Lv.{player.level}
+                      </strong>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-stone-500 block">
+                        Eventos
+                      </span>
+                      <strong className="font-medieval text-xs text-stone-200">
+                        {player.participacoes_eventos}
+                      </strong>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-stone-500 block">
+                        Contrib.
+                      </span>
+                      <strong className="font-medieval text-xs text-[#D66A19]">
+                        {player.contribuicao_cla}
+                      </strong>
+                    </div>
                   </div>
                 </div>
 

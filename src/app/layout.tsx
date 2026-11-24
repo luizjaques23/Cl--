@@ -26,6 +26,14 @@ export const metadata: Metadata = {
   description:
     "ALCATRAZZ — Honra, Lealdade e Poder. Portal Oficial de Gerenciamento de Membros, Hierarquia, SoD (Siege of the Darkness), Bless Castle e Ranking inspirado em Priston Tale. Desenvolvido por Luiz Jaques.",
   manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "ALCATRAZZ",
+  },
+  formatDetection: {
+    telephone: false,
+  },
   icons: {
     icon: "/assets/alcatrazz-crest.jpg",
     apple: "/assets/alcatrazz-crest.jpg",

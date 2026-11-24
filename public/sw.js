@@ -1,32 +1,44 @@
-const CACHE_NAME = 'alcatrazz-portal-v1';
+const CACHE_NAME = "alcatrazz-portal-v2";
 const ASSETS_TO_CACHE = [
-  '/',
-  '/manifest.json',
-  '/assets/hero-castle.jpg',
-  '/assets/alcatrazz-crest.jpg'
+  "/",
+  "/manifest.json",
+  "/assets/hero-castle.jpg",
+  "/assets/alcatrazz-crest.jpg",
 ];
 
-self.addEventListener('install', (event) => {
+self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE))
+    caches.open(CACHE_NAME).then((cache) =>
+      Promise.allSettled(ASSETS_TO_CACHE.map((url) => cache.add(url)))
+    )
   );
   self.skipWaiting();
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.map((key) => (key !== CACHE_NAME ? caches.delete(key) : null)))
+      Promise.all(
+        keys.map((key) => (key !== CACHE_NAME ? caches.delete(key) : null))
+      )
     )
   );
   self.clients.claim();
 });
 
-self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET' || event.request.url.includes('/api/')) {
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET" || event.request.url.includes("/api/")) {
     return;
   }
   event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
+    fetch(event.request)
+      .then((res) => {
+        if (res && res.status === 200 && res.type === "basic") {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return res;
+      })
+      .catch(() => caches.match(event.request))
   );
 });

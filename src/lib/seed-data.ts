@@ -149,7 +149,7 @@ export const INITIAL_CARGOS: Cargo[] = [
   },
 ];
 
-// Listas limpas — Prontas para o Líder cadastrar e salvar com a senha 232356
+// Listas limpas — Prontas para a liderança cadastrar e salvar oficialmente
 export const INITIAL_JOGADORES: Jogador[] = [];
 export const INITIAL_AVISOS: Aviso[] = [];
 export const INITIAL_EVENTOS: EventoCla[] = [];

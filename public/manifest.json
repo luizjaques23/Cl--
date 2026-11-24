@@ -1,8 +1,10 @@
 {
-  "name": "ALCATRAZZ — Portal Oficial do Clã (Zephira World)",
+  "id": "/",
+  "name": "ALCATRAZZ — Portal Oficial do Clã",
   "short_name": "ALCATRAZZ",
-  "description": "Portal Oficial do Clã de MMORPG ALCATRAZZ — Honra, Lealdade e Poder. Desenvolvido por Zephira World e Luiz Jaques.",
+  "description": "Portal Oficial do Clã de MMORPG ALCATRAZZ — Honra, Lealdade e Poder.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#07050b",
   "theme_color": "#581c87",
@@ -12,13 +14,19 @@
       "src": "/assets/alcatrazz-crest.jpg",
       "sizes": "192x192",
       "type": "image/jpeg",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/assets/alcatrazz-crest.jpg",
       "sizes": "512x512",
       "type": "image/jpeg",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/alcatrazz-crest.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
     }
   ]
 }

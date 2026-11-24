@@ -603,15 +603,15 @@ export function AdminPanelSection({
               Controle do Líder & Senha Oficial
             </h3>
             <p className="text-xs text-stone-400 mb-5 leading-relaxed">
-              O portal está limpo e pronto para uso oficial. Todas as adições de membros, alterações no ranking, publicação de comunicados e criação de eventos solicitam a <strong className="text-[#D6A33A]">Senha de Confirmação (232356)</strong> diretamente pela interface do site, sem precisar de banco de dados tradicional.
+              O portal está limpo e pronto para uso oficial. Todas as adições de membros, alterações no ranking, publicação de comunicados e criação de eventos solicitam a <strong className="text-[#D6A33A]">Senha de Confirmação do Líder</strong> diretamente pela interface do site.
             </p>
 
             <div className="p-4 rounded-xl bg-black/60 border border-[#D6A33A]/30 space-y-2 text-xs mb-4">
               <div className="flex items-center gap-2 text-[#D6A33A] font-medieval font-bold">
-                <KeyRound className="w-4 h-4" /> Senha Oficial do Líder: 232356
+                <KeyRound className="w-4 h-4" /> Acesso Restrito à Liderança
               </div>
               <p className="text-stone-300 text-[11px] leading-relaxed">
-                Qualquer alteração confirmada com a senha fica salva permanentemente e sincronizada para todos os dispositivos em tempo real.
+                Qualquer alteração confirmada pela liderança fica salva permanentemente e sincronizada para todos os dispositivos em tempo real.
               </p>
             </div>
 

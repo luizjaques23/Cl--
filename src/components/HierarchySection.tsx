@@ -94,21 +94,21 @@ export function HierarchySection({
       id="hierarquia"
       className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#D6A33A]/15"
     >
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-        <div className="flex items-start sm:items-center gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-5">
+        <div className="flex items-start sm:items-center gap-3.5 sm:gap-4 min-w-0">
           <img
             src="/assets/alcatrazz-crest.jpg"
             alt="Logo Oficial ALCATRAZZ"
-            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
+            className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-[#D6A33A] shadow-gold-glow shrink-0"
           />
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-xs uppercase tracking-widest mb-2">
-              <Crown className="w-3.5 h-3.5" /> Cadeia de Comando Imperial
+          <div className="min-w-0">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#581c87]/40 border border-[#a855f7]/50 text-[#e879f9] text-[10px] sm:text-xs uppercase tracking-widest mb-2">
+              <Crown className="w-3.5 h-3.5 shrink-0" /> Cadeia de Comando Imperial
             </div>
-            <h2 className="font-medieval text-2xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide">
+            <h2 className="font-medieval text-xl sm:text-4xl font-extrabold gold-text-gradient tracking-wide leading-tight break-words">
               HIERARQUIA OFICIAL DO CLÃ
             </h2>
-            <p className="text-stone-400 mt-1.5 max-w-2xl text-xs sm:text-base">
+            <p className="text-stone-400 mt-1.5 max-w-2xl text-xs sm:text-base leading-relaxed">
               A estrutura de autoridade da ALCATRAZZ é forjada em mérito, disciplina e
               lealdade em campo de batalha. Cada patente detém insígnias e atribuições
               exclusivas.
@@ -128,7 +128,7 @@ export function HierarchySection({
                 permissoes_padrao: [],
               })
             }
-            className="btn-royal-gold px-5 py-2.5 rounded-lg flex items-center gap-2 text-sm font-medieval uppercase tracking-wider"
+            className="btn-royal-gold w-full md:w-auto justify-center px-5 py-3 rounded-xl flex items-center gap-2 text-xs sm:text-sm font-medieval uppercase tracking-wider min-h-[44px]"
           >
             <Plus className="w-4 h-4" /> Criar Nova Patente
           </button>
